@@ -1,0 +1,10 @@
+[INFO] Installing environment for local.
+[INFO] Once installed this environment will be reused.
+[INFO] This may take a few minutes...
+Check every Buildkite step declares an explicit key.......................Passed
+[INFO] Installing environment for local.
+[INFO] Once installed this environment will be reused.
+[INFO] This may take a few minutes...
+Check new tests are wired into Buildkite CI..............................Passed
+- hook id: check-test-tethering
+- duration: 3.68s

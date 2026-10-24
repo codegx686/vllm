@@ -1,0 +1,22 @@
+ruff check...............................................................Passed
+ruff format..............................................................Passed
+typos....................................................................Passed
+markdownlint-cli2........................................................Passed
+[INFO] Installing environment for local.
+[INFO] Once installed this environment will be reused.
+[INFO] This may take a few minutes...
+Run mypy for the oldest supported Python version.........................Passed
+[INFO] Installing environment for local.
+[INFO] Once installed this environment will be reused.
+[INFO] This may take a few minutes...
+Check SPDX headers.......................................................Passed
+Check for spaces in all filenames........................................Passed
+[INFO] Installing environment for local.
+[INFO] Once installed this environment will be reused.
+[INFO] This may take a few minutes...
+Check for forbidden imports..............................................Passed
+Prevent new 'torch.cuda' APIs call.......................................Passed
+Validate configuration has default values and that each field has a docstring.......................Passed
+Check .dockerignore does not exclude tracked files.......................Passed
+Check for boolean ops in with-statements.................................Passed
+HOOK_RESULTS [["ruff-check", 0], ["ruff-format", 0], ["typos", 0], ["markdownlint-cli2", 0], ["mypy", 0], ["check-spdx-header", 0], ["check-filenames", 0], ["check-forbidden-imports", 0], ["check-torch-cuda-call", 0], ["validate-config", 0], ["check-dockerignore-tracked", 0], ["check-boolean-context-manager", 0]]

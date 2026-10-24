@@ -1,0 +1,238 @@
+{
+  "native128": [
+    {
+      "batch": 0,
+      "request": 0,
+      "exact_match": false,
+      "first_difference": 9,
+      "mutual_top5": true,
+      "native_top5": {
+        "264": -0.8317710757255554,
+        "3881": -0.8317710757255554,
+        "279": -2.3317711353302,
+        "35948": -3.8317711353302,
+        "7407": -5.831770896911621
+      },
+      "candidate_top5": {
+        "3881": -0.7520731687545776,
+        "264": -0.8770731687545776,
+        "279": -2.502073287963867,
+        "35948": -3.877073287963867,
+        "7407": -5.877073287963867
+      }
+    },
+    {
+      "batch": 0,
+      "request": 1,
+      "exact_match": true,
+      "first_difference": null
+    },
+    {
+      "batch": 0,
+      "request": 2,
+      "exact_match": true,
+      "first_difference": null
+    }
+  ],
+  "off": [
+    {
+      "batch": 0,
+      "request": 0,
+      "exact_match": true,
+      "first_difference": null
+    },
+    {
+      "batch": 0,
+      "request": 1,
+      "exact_match": true,
+      "first_difference": null
+    },
+    {
+      "batch": 0,
+      "request": 2,
+      "exact_match": true,
+      "first_difference": null
+    }
+  ],
+  "adaptive": [
+    {
+      "batch": 0,
+      "request": 0,
+      "exact_match": false,
+      "first_difference": 9,
+      "mutual_top5": true,
+      "native_top5": {
+        "264": -0.8317710757255554,
+        "3881": -0.8317710757255554,
+        "279": -2.3317711353302,
+        "35948": -3.8317711353302,
+        "7407": -5.831770896911621
+      },
+      "candidate_top5": {
+        "3881": -0.7520731687545776,
+        "264": -0.8770731687545776,
+        "279": -2.502073287963867,
+        "35948": -3.877073287963867,
+        "7407": -5.877073287963867
+      }
+    },
+    {
+      "batch": 0,
+      "request": 1,
+      "exact_match": true,
+      "first_difference": null
+    },
+    {
+      "batch": 0,
+      "request": 2,
+      "exact_match": true,
+      "first_difference": null
+    }
+  ],
+  "example": [
+    {
+      "batch": 0,
+      "request": 0,
+      "exact_match": false,
+      "first_difference": 9,
+      "mutual_top5": true,
+      "native_top5": {
+        "264": -0.8317710757255554,
+        "3881": -0.8317710757255554,
+        "279": -2.3317711353302,
+        "35948": -3.8317711353302,
+        "7407": -5.831770896911621
+      },
+      "candidate_top5": {
+        "3881": -0.7520731687545776,
+        "264": -0.8770731687545776,
+        "279": -2.502073287963867,
+        "35948": -3.877073287963867,
+        "7407": -5.877073287963867
+      }
+    },
+    {
+      "batch": 0,
+      "request": 1,
+      "exact_match": true,
+      "first_difference": null
+    },
+    {
+      "batch": 0,
+      "request": 2,
+      "exact_match": true,
+      "first_difference": null
+    }
+  ],
+  "static128": [
+    {
+      "batch": 0,
+      "request": 0,
+      "exact_match": false,
+      "first_difference": 9,
+      "mutual_top5": true,
+      "native_top5": {
+        "264": -0.8317710757255554,
+        "3881": -0.8317710757255554,
+        "279": -2.3317711353302,
+        "35948": -3.8317711353302,
+        "7407": -5.831770896911621
+      },
+      "candidate_top5": {
+        "3881": -0.7520731687545776,
+        "264": -0.8770731687545776,
+        "279": -2.502073287963867,
+        "35948": -3.877073287963867,
+        "7407": -5.877073287963867
+      }
+    },
+    {
+      "batch": 0,
+      "request": 1,
+      "exact_match": true,
+      "first_difference": null
+    },
+    {
+      "batch": 0,
+      "request": 2,
+      "exact_match": true,
+      "first_difference": null
+    }
+  ],
+  "adaptive-prefix": [
+    {
+      "batch": 0,
+      "request": 0,
+      "exact_match": true,
+      "first_difference": null
+    },
+    {
+      "batch": 0,
+      "request": 1,
+      "exact_match": true,
+      "first_difference": null
+    },
+    {
+      "batch": 0,
+      "request": 2,
+      "exact_match": true,
+      "first_difference": null
+    },
+    {
+      "batch": 1,
+      "request": 0,
+      "exact_match": true,
+      "first_difference": null
+    },
+    {
+      "batch": 1,
+      "request": 1,
+      "exact_match": true,
+      "first_difference": null
+    },
+    {
+      "batch": 1,
+      "request": 2,
+      "exact_match": true,
+      "first_difference": null
+    }
+  ],
+  "example-prefix": [
+    {
+      "batch": 0,
+      "request": 0,
+      "exact_match": true,
+      "first_difference": null
+    },
+    {
+      "batch": 0,
+      "request": 1,
+      "exact_match": true,
+      "first_difference": null
+    },
+    {
+      "batch": 0,
+      "request": 2,
+      "exact_match": true,
+      "first_difference": null
+    },
+    {
+      "batch": 1,
+      "request": 0,
+      "exact_match": true,
+      "first_difference": null
+    },
+    {
+      "batch": 1,
+      "request": 1,
+      "exact_match": true,
+      "first_difference": null
+    },
+    {
+      "batch": 1,
+      "request": 2,
+      "exact_match": true,
+      "first_difference": null
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "runs": 42,
+  "requests": 2016,
+  "failed": 0,
+  "max_dispatch_delay_ms": 5.3958605200513095,
+  "policies": {
+    "adaptive": {
+      "steps": 19652,
+      "switches": 36,
+      "guards": 50,
+      "budget_violations": 0,
+      "preemptions": 0,
+      "decision_us_median": 12.524,
+      "decision_us_p99": 24.361,
+      "max_observed_stall_ms": 1650.0074500218034
+    },
+    "no_guard": {
+      "steps": 19815,
+      "switches": 36,
+      "guards": 0,
+      "budget_violations": 0,
+      "preemptions": 0,
+      "decision_us_median": 12.223,
+      "decision_us_p99": 27.08,
+      "max_observed_stall_ms": 1862.9088937304914
+    },
+    "no_hysteresis": {
+      "steps": 19614,
+      "switches": 38,
+      "guards": 51,
+      "budget_violations": 0,
+      "preemptions": 0,
+      "decision_us_median": 12.692,
+      "decision_us_p99": 25.468,
+      "max_observed_stall_ms": 1645.449694711715
+    },
+    "ppas": {
+      "steps": 19749,
+      "switches": 38,
+      "guards": 0,
+      "budget_violations": 0,
+      "preemptions": 0,
+      "decision_us_median": 12.749,
+      "decision_us_p99": 24.643,
+      "max_observed_stall_ms": 1870.3232579864562
+    },
+    "static2048": {
+      "steps": 19586,
+      "switches": 0,
+      "guards": 0,
+      "budget_violations": 0,
+      "preemptions": 0,
+      "decision_us_median": 11.154,
+      "decision_us_p99": 22.448,
+      "max_observed_stall_ms": 1554.2768249288201
+    },
+    "static4096": {
+      "steps": 19370,
+      "switches": 0,
+      "guards": 0,
+      "budget_violations": 0,
+      "preemptions": 0,
+      "decision_us_median": 11.546,
+      "decision_us_p99": 23.587,
+      "max_observed_stall_ms": 1358.7056356482208
+    }
+  },
+  "greedy_output_comparison_to_native": {
+    "static4096": {
+      "matched": 288,
+      "compared": 288
+    },
+    "adaptive": {
+      "matched": 288,
+      "compared": 288
+    },
+    "ppas": {
+      "matched": 288,
+      "compared": 288
+    },
+    "native8192": {
+      "matched": 288,
+      "compared": 288
+    },
+    "no_guard": {
+      "matched": 288,
+      "compared": 288
+    },
+    "static2048": {
+      "matched": 288,
+      "compared": 288
+    },
+    "no_hysteresis": {
+      "matched": 288,
+      "compared": 288
+    }
+  },
+  "multi_token_chunks": 1623
+}

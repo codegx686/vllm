@@ -1,0 +1,98 @@
+WARNING 10-14 17:22:17 [config.py:70] Support for Transformers v4 is deprecated. The Transformers v4 codepath will become unmaintained in vLLM v0.22.0 and will be removed in vLLM v0.24.0. Please upgrade to Transformers v5: pip install --upgrade transformers
+SchedulerConfig:
+  Scheduler configuration.
+
+  --async-scheduling, --no-async-scheduling
+                        If set to False, disable async scheduling. Async
+                        scheduling helps to avoid gaps in GPU utilization,
+                        leading to better latency and throughput. (default:
+                        None)
+  --disable-chunked-mm-input, --no-disable-chunked-mm-input
+                        If set to true and chunked prefill is enabled, we do
+                        not want to partially schedule a multimodal item. Only
+                        used in V1 This ensures that if a request has a mixed
+                        prompt (like text tokens TTTT followed by image tokens
+                        IIIIIIIIII) where only some image tokens can be
+                        scheduled (like TTTTIIIII, leaving IIIII), it will be
+                        scheduled as TTTT in one step and IIIIIIIIII in the
+                        next. (default: False)
+  --disable-hybrid-kv-cache-manager, --no-disable-hybrid-kv-cache-manager
+                        If set to True, KV cache manager will allocate the
+                        same size of KV cache for all attention layers even if
+                        there are multiple type of attention layers like full
+                        attention and sliding window attention. If set to
+                        None, the default value will be determined based on
+                        the environment and starting configuration. (default:
+                        None)
+  --enable-chunked-prefill, --no-enable-chunked-prefill
+                        If True, prefill requests can be chunked based on the
+                        remaining `max_num_batched_tokens`.
+                        The default value here is mainly for convenience when
+                        testing. In real usage, this should be set in
+                        `EngineArgs.create_engine_config`. (default: None)
+  --long-prefill-token-threshold LONG_PREFILL_TOKEN_THRESHOLD
+                        For chunked prefill, a request is considered long if
+                        the prompt is longer than this number of tokens.
+                        (default: 0)
+  --max-long-partial-prefills MAX_LONG_PARTIAL_PREFILLS
+                        For chunked prefill, the maximum number of prompts
+                        longer than long_prefill_token_threshold that will be
+                        prefilled concurrently. Setting this less than
+                        max_num_partial_prefills will allow shorter prompts to
+                        jump the queue in front of longer prompts in some
+                        cases, improving latency. (default: 1)
+  --max-num-batched-tokens MAX_NUM_BATCHED_TOKENS
+                        Maximum number of tokens that can be processed in a
+                        single iteration.
+                        The default value here is mainly for convenience when
+                        testing. In real usage, this should be set in
+                        `EngineArgs.create_engine_config`.
+                        Parse human-readable integers like '1k', '2M', etc.
+                        Including decimal values with decimal multipliers.
+                            Examples:
+                            - '1k' -> 1,000
+                            - '1K' -> 1,024
+                            - '25.6k' -> 25,600 (default: None)
+  --max-num-partial-prefills MAX_NUM_PARTIAL_PREFILLS
+                        For chunked prefill, the maximum number of sequences
+                        that can be partially prefilled concurrently.
+                        (default: 1)
+  --max-num-seqs MAX_NUM_SEQS
+                        Maximum number of sequences to be processed in a
+                        single iteration.
+                        The default value here is mainly for convenience when
+                        testing. In real usage, this should be set in
+                        `EngineArgs.create_engine_config`. (default: None)
+  --scheduler-cls SCHEDULER_CLS
+                        The scheduler class to use.
+                        "vllm.v1.core.sched.scheduler.Scheduler" is the
+                        default scheduler. Can be a class directly or the path
+                        to a class of form "mod.custom_class". (default: None)
+  --scheduler-reserve-full-isl, --no-scheduler-reserve-full-isl
+                        If True, the scheduler checks whether the full input
+                        sequence length fits in the KV cache before admitting
+                        a new request, rather than only checking the first
+                        chunk. Prevents over-admission and KV cache thrashing
+                        with chunked prefill. (default: True)
+  --scheduling-policy {fcfs,priority}
+                        The scheduling policy to use:
+                        - "fcfs" means first come first served, i.e. requests
+                        are handled in order  of arrival.
+                        - "priority" means requests are handled based on given
+                        priority (lower value means earlier handling) and time
+                        of arrival deciding any ties). (default: fcfs)
+  --stream-interval STREAM_INTERVAL
+                        The interval (or buffer size) for streaming in terms
+                        of token length. A smaller value (1) makes streaming
+                        smoother by sending each token immediately, while a
+                        larger value (e.g., 10) reduces host overhead and may
+                        increase throughput by batching multiple tokens before
+                        sending. (default: 1)
+
+When passing JSON CLI arguments, the following sets of arguments are equivalent:
+   --json-arg '{"key1": "value1", "key2": {"key3": "value2"}}'
+   --json-arg.key1 value1 --json-arg.key2.key3 value2
+
+Additionally, list elements can be passed individually using +:
+   --json-arg '{"key4": ["value3", "value4", "value5"]}'
+   --json-arg.key4+ value3 --json-arg.key4+='value4,value5'

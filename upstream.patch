@@ -1,0 +1,472 @@
+diff --git a/.buildkite/test_areas/plugins.yaml b/.buildkite/test_areas/plugins.yaml
+index 2218907..e702579 100644
+--- a/.buildkite/test_areas/plugins.yaml
++++ b/.buildkite/test_areas/plugins.yaml
+@@ -11,6 +11,10 @@ steps:
+   source_file_dependencies:
+   - vllm/plugins/
+   - tests/plugins/
++  - tests/plugins_tests/test_scheduler_plugins.py
++  - tests/v1/core/utils.py
++  - examples/features/adaptive_budget/
++  - vllm/v1/core/sched/
+   commands:
+   # begin platform plugin and general plugin tests, all the code in-between runs on dummy platform
+   - pip install -e ./plugins/vllm_add_dummy_platform
+@@ -61,6 +65,10 @@ steps:
+       source_file_dependencies:
+       - vllm/plugins/
+       - tests/plugins/
++      - tests/plugins_tests/test_scheduler_plugins.py
++      - tests/v1/core/utils.py
++      - examples/features/adaptive_budget/
++      - vllm/v1/core/sched/
+       - vllm/platforms/rocm.py
+ 
+ 
+diff --git a/docs/features/README.md b/docs/features/README.md
+index 1df8960..e970cd0 100644
+--- a/docs/features/README.md
++++ b/docs/features/README.md
+@@ -1,5 +1,8 @@
+ # Features
+ 
++For an opt-in scheduler extension example, see
++[Adaptive token budgets](adaptive_budget.md).
++
+ ## Compatibility Matrix
+ 
+ The tables below show mutually exclusive features and the support on some hardware.
+diff --git a/docs/features/adaptive_budget.md b/docs/features/adaptive_budget.md
+new file mode 100644
+index 0000000..e8f1584
+--- /dev/null
++++ b/docs/features/adaptive_budget.md
+@@ -0,0 +1,79 @@
++# Adaptive token budgets (scheduler example)
++
++The [adaptive budget example](../../examples/features/adaptive_budget/scheduler.py)
++uses `scheduler_cls` to vary the total number of tokens scheduled per iteration.
++It is opt-in: the standard scheduler and its defaults are unchanged. This is a
++reference extension for experimenting with the latency/throughput trade-off,
++not a universally faster scheduling policy.
++
++## Run the example
++
++From a vLLM source checkout, make the example importable in the engine process:
++
++```bash
++PYTHONPATH="$PWD${PYTHONPATH:+:$PYTHONPATH}" vllm serve Qwen/Qwen3-1.7B \
++    --scheduler-cls examples.features.adaptive_budget.scheduler.AdaptiveBudgetScheduler \
++    --no-async-scheduling --enable-chunked-prefill \
++    --max-num-batched-tokens 8192 \
++    --additional-config '{"adaptive_budget":{"high_budget":8192,"low_budget":1024,"guard_budget":4096}}'
++```
++
++Synchronous scheduling and chunked prefill are required. Use a single GPU and
++a text-only decoder model. Speculative decoding, LoRA,
++pooling, encoder-decoder models, multimodal models, KV/encoder transfer and
++tensor/pipeline/data parallelism are rejected by this example. Prefix caching
++is allowed; a waiting request is conservatively counted as prefill until the
++native scheduler resolves its cache hit. Remove `--scheduler-cls` and the
++`adaptive_budget` entry to restore the standard scheduler.
++
++## Configuration and behavior
++
++All options below belong to `additional_config.adaptive_budget`.
++Unknown keys, nonintegral token budgets, and nonfinite timeouts are rejected.
++
++| Option | Default | Meaning |
++| --- | ---: | --- |
++| `high_budget` | 8192 | Open-state total token budget; must fit the configured scheduling capacity. |
++| `low_budget` | 1024 | Total token budget while mixed prefill/decode work is under pressure. |
++| `enter_prefills` | 2 | Enter the limited state at this number of runnable prefills with active decode. |
++| `exit_prefills` | 0 | Leave the limited state at or below this count; must be below `enter_prefills`. |
++| `min_dwell_steps` | 4 | Minimum steps between pressure transitions. |
++| `guard_enabled` | true | Allow a periodic budget boost after a prefill stops advancing. |
++| `max_stall_ms` | 250 | Monotonic elapsed time since the last observed computed-token increase. |
++| `guard_budget` | 4096 | Boosted budget; between `low_budget` and `high_budget`. |
++| `guard_interval_steps` | 8 | Minimum number of steps between boosts. |
++
++When either prefill or decode work disappears, the controller immediately
++returns to `high_budget`, bypassing minimum residence. With the default
++`exit_prefills=0`, this immediate-release rule handles exit; a positive exit
++threshold can also exit while mixed work remains. Recomputed generated tokens
++after preemption count as prefill work. Grammar/KV-blocked requests are excluded.
++
++The example delegates allocation, preemption, cancellation and request ordering
++to the native scheduler. It temporarily narrows `max_num_scheduled_tokens` and
++restores it in `finally`; it never resizes the model runner's compilation or
++buffer capacity. This relies on the concrete Scheduler implementation, so it
++must be checked when upgrading vLLM. It does not add GPU synchronization.
++
++A boost creates an opportunity for progress. It cannot guarantee admission or
++freedom from starvation: KV pressure and the native request order still apply.
++The observer scans the request map once per step, so CPU cost grows with queue
++depth. A smaller total budget may also delay decode requests, especially if it
++is smaller than the number of active sequences. Start with a low budget at least
++as large as `max_num_seqs` and measure the actual workload.
++
++## Evaluate the trade-off
++
++Compare against the standard scheduler, several fixed runtime budgets, and the
++existing `long_prefill_token_threshold` controls. Keep runner capacity, model,
++arrival traces, output lengths and warmup constant. Report TTFT, TPOT, end-to-end
++latency, throughput, failures and long/short request slices; record run-to-run
++variation. Smaller chunks can improve token interarrival latency while worsening
++TTFT and overall latency. Do not infer production gains from a single synthetic
++trace.
++
++The pressure predicate is inspired by [P-PAS RFC #52906](https://github.com/vllm-project/vllm/issues/52906).
++P-PAS caps aggregate **prefill** work while retaining the global token budget.
++This example caps **all** scheduled tokens and adds residence, hysteresis and a
++rate-limited progress boost. It is not an implementation or reproduction of
++P-PAS, and its results should not be labeled as P-PAS results.
+diff --git a/examples/features/adaptive_budget/scheduler.py b/examples/features/adaptive_budget/scheduler.py
+new file mode 100644
+index 0000000..39b39b3
+--- /dev/null
++++ b/examples/features/adaptive_budget/scheduler.py
+@@ -0,0 +1,150 @@
++# SPDX-License-Identifier: Apache-2.0
++# SPDX-FileCopyrightText: Copyright contributors to the vLLM project
++"""An opt-in example of bounded token budgets using the scheduler extension API."""
++
++import time
++
++from pydantic import BaseModel, ConfigDict, Field, model_validator
++
++from vllm.config import VllmConfig
++from vllm.v1.core.sched.output import SchedulerOutput
++from vllm.v1.core.sched.scheduler import Scheduler
++from vllm.v1.request import Request, RequestStatus
++
++
++class BudgetConfig(BaseModel):
++    model_config = ConfigDict(extra="forbid", strict=True, frozen=True)
++
++    high_budget: int = Field(default=8192, ge=1)
++    low_budget: int = Field(default=1024, ge=1)
++    enter_prefills: int = Field(default=2, ge=1)
++    exit_prefills: int = Field(default=0, ge=0)
++    min_dwell_steps: int = Field(default=4, ge=0)
++    guard_enabled: bool = True
++    max_stall_ms: float = Field(default=250.0, gt=0, allow_inf_nan=False)
++    guard_budget: int = Field(default=4096, ge=1)
++    guard_interval_steps: int = Field(default=8, ge=1)
++
++    @model_validator(mode="after")
++    def validate_bounds(self) -> "BudgetConfig":
++        if not self.low_budget <= self.guard_budget <= self.high_budget:
++            raise ValueError("Require low_budget <= guard_budget <= high_budget")
++        if self.exit_prefills >= self.enter_prefills:
++            raise ValueError("Require exit_prefills < enter_prefills")
++        return self
++
++
++class BudgetController:
++    """Select a total iteration budget without changing request order."""
++
++    def __init__(self, config: BudgetConfig):
++        self.config = config
++        self.limited = False
++        self.step = 0
++        self.last_switch = -config.min_dwell_steps
++        self.last_guard = -config.guard_interval_steps
++
++    def decide(self, prefills: int, decodes: int, stall_ms: float) -> int:
++        cfg = self.config
++        self.step += 1
++        previous = self.limited
++        if not prefills or not decodes:
++            self.limited = False
++        elif self.step - self.last_switch >= cfg.min_dwell_steps:
++            if not self.limited and prefills >= cfg.enter_prefills:
++                self.limited = True
++            elif self.limited and prefills <= cfg.exit_prefills:
++                self.limited = False
++        if previous != self.limited:
++            self.last_switch = self.step
++        if not self.limited:
++            return cfg.high_budget
++        if (
++            cfg.guard_enabled
++            and stall_ms >= cfg.max_stall_ms
++            and self.step - self.last_guard >= cfg.guard_interval_steps
++        ):
++            self.last_guard = self.step
++            return cfg.guard_budget
++        return cfg.low_budget
++
++
++class AdaptiveBudgetScheduler(Scheduler):
++    """Synchronous text-only example; the standard scheduler remains the default."""
++
++    def __init__(self, vllm_config: VllmConfig, *args, **kwargs) -> None:
++        sc = vllm_config.scheduler_config
++        if sc.async_scheduling or not sc.enable_chunked_prefill:
++            raise ValueError("Use synchronous scheduling with chunked prefill")
++        if (
++            sc.is_multimodal_model
++            or sc.runner_type != "generate"
++            or vllm_config.model_config.is_encoder_decoder
++            or vllm_config.speculative_config is not None
++            or vllm_config.lora_config is not None
++            or vllm_config.kv_transfer_config is not None
++            or vllm_config.ec_transfer_config is not None
++            or vllm_config.parallel_config.world_size != 1
++            or vllm_config.parallel_config.data_parallel_size != 1
++        ):
++            raise ValueError("This example requires single-GPU text generation")
++        additional = vllm_config.additional_config
++        if not isinstance(additional, dict):
++            raise ValueError("additional_config must be a dictionary")
++        self.budget_config = BudgetConfig.model_validate(
++            additional.get("adaptive_budget", {})
++        )
++        capacity = sc.max_num_scheduled_tokens or sc.max_num_batched_tokens
++        if self.budget_config.high_budget > capacity:
++            raise ValueError("high_budget exceeds the scheduler's configured capacity")
++        super().__init__(vllm_config, *args, **kwargs)
++        self.budget_controller = BudgetController(self.budget_config)
++        self.prefill_progress: dict[str, tuple[Request, int, float]] = {}
++
++    def _observe(self, now: float) -> tuple[int, int, float]:
++        prefills = decodes = 0
++        oldest_stall_ms = 0.0
++        live: set[str] = set()
++        for req_id, req in self.requests.items():
++            if req.status not in (
++                RequestStatus.WAITING,
++                RequestStatus.RUNNING,
++                RequestStatus.PREEMPTED,
++            ):
++                continue
++            # Replaying generated tokens after preemption is also prefill work.
++            prefill_end = max(req.num_prompt_tokens, req.num_tokens - 1)
++            if req.num_computed_tokens < prefill_end:
++                prefills += 1
++                live.add(req_id)
++                old_req, old_count, last_progress = self.prefill_progress.get(
++                    req_id, (req, req.num_computed_tokens, now)
++                )
++                if old_req is not req or req.num_computed_tokens > old_count:
++                    last_progress = now
++                self.prefill_progress[req_id] = (
++                    req,
++                    req.num_computed_tokens,
++                    last_progress,
++                )
++                oldest_stall_ms = max(oldest_stall_ms, (now - last_progress) * 1000)
++            elif req.status == RequestStatus.RUNNING:
++                decodes += 1
++        for req_id in self.prefill_progress.keys() - live:
++            del self.prefill_progress[req_id]
++        return prefills, decodes, oldest_stall_ms
++
++    def schedule(self, *args, **kwargs) -> SchedulerOutput:
++        budget = self.budget_controller.decide(*self._observe(time.monotonic()))
++        capacity = self.max_num_scheduled_tokens
++        self.max_num_scheduled_tokens = budget
++        try:
++            return super().schedule(*args, **kwargs)
++        finally:
++            self.max_num_scheduled_tokens = capacity
++
++    def shutdown(self) -> None:
++        try:
++            super().shutdown()
++        finally:
++            self.prefill_progress.clear()
+diff --git a/tests/plugins_tests/test_scheduler_plugins.py b/tests/plugins_tests/test_scheduler_plugins.py
+index f416b88..65057a2 100644
+--- a/tests/plugins_tests/test_scheduler_plugins.py
++++ b/tests/plugins_tests/test_scheduler_plugins.py
+@@ -3,10 +3,20 @@
+ 
+ import pytest
+ 
++from examples.features.adaptive_budget.scheduler import (
++    AdaptiveBudgetScheduler,
++    BudgetConfig,
++    BudgetController,
++)
++from tests.models.utils import check_logprobs_close
++from tests.v1.core.utils import create_requests, create_scheduler
+ from vllm.engine.arg_utils import EngineArgs
+ from vllm.sampling_params import SamplingParams
++from vllm.transformers_utils.utils import maybe_model_redirect
+ from vllm.v1.core.sched.scheduler import Scheduler
+ from vllm.v1.engine.llm_engine import LLMEngine
++from vllm.v1.outputs import ModelRunnerOutput
++from vllm.v1.request import RequestStatus
+ 
+ 
+ class DummyV1Scheduler(Scheduler):
+@@ -34,3 +44,146 @@ def test_scheduler_plugins_v1(monkeypatch: pytest.MonkeyPatch):
+             engine.step()
+ 
+         assert str(exception_info.value) == "Exception raised by DummyV1Scheduler"
++
++
++@pytest.mark.parametrize(
++    "config",
++    [
++        {"low_budget": 1.5},
++        {"low_budget": True},
++        {"high_budget": 512},
++        {"max_stall_ms": float("nan")},
++        {"max_stall_ms": float("inf")},
++        {"enter_prefills": 0},
++        {"exit_prefills": 2},
++        {"guard_interval_steps": 0},
++        {"guard_enabled": "false"},
++        {"misspelled_budget": 1024},
++    ],
++)
++def test_adaptive_budget_rejects_invalid_config(config):
++    with pytest.raises(ValueError):
++        BudgetConfig(**config)
++
++
++def test_adaptive_budget_dwell_and_unmixed_release():
++    controller = BudgetController(
++        BudgetConfig(
++            enter_prefills=3, exit_prefills=1, min_dwell_steps=3, guard_enabled=False
++        )
++    )
++    budgets = [controller.decide(p, 4, 0) for p in [3, 1, 1, 1, 3, 3, 3]]
++    assert budgets == [1024] * 3 + [8192] * 3 + [1024]
++    assert controller.decide(3, 0, 0) == 8192
++
++
++def test_adaptive_budget_guard_is_rate_limited():
++    controller = BudgetController(BudgetConfig(guard_interval_steps=3))
++    assert [controller.decide(3, 4, 500) for _ in range(7)] == [
++        4096,
++        1024,
++        1024,
++        4096,
++        1024,
++        1024,
++        4096,
++    ]
++
++
++def test_adaptive_budget_preserves_capacity_and_request_lifecycle():
++    scheduler = create_scheduler(
++        model="Qwen/Qwen3-1.7B",
++        scheduler_cls=AdaptiveBudgetScheduler,
++        additional_config={"adaptive_budget": {"enter_prefills": 1}},
++    )
++    try:
++        decode = create_requests(1, num_tokens=32, req_ids=["decode"])[0]
++        scheduler.add_request(decode)
++        first = scheduler.schedule()
++        scheduler.update_from_output(
++            first,
++            ModelRunnerOutput(
++                req_ids=["decode"],
++                req_id_to_index={"decode": 0},
++                sampled_token_ids=[[42]],
++                logprobs=None,
++                prompt_logprobs_dict={},
++                pooler_output=[],
++            ),
++        )
++        prefill = create_requests(1, num_tokens=8000, req_ids=["prefill"])[0]
++        scheduler.add_request(prefill)
++        output = scheduler.schedule()
++        assert output.num_scheduled_tokens == {"decode": 1, "prefill": 1023}
++        assert scheduler.max_num_scheduled_tokens == 8192
++        assert scheduler.scheduler_config.max_num_batched_tokens == 8192
++        scheduler.finish_requests(["decode", "prefill"], RequestStatus.FINISHED_ABORTED)
++        assert scheduler.get_num_unfinished_requests() == 0
++        assert scheduler.schedule().total_num_scheduled_tokens == 0
++    finally:
++        scheduler.shutdown()
++
++
++def test_adaptive_budget_rejects_capacity_overflow():
++    with pytest.raises(ValueError, match="capacity"):
++        create_scheduler(
++            model="Qwen/Qwen3-1.7B",
++            scheduler_cls=AdaptiveBudgetScheduler,
++            max_num_batched_tokens=4096,
++        )
++
++
++@pytest.mark.parametrize("enable_prefix_caching", [False, True])
++def test_adaptive_budget_generation(vllm_runner, enable_prefix_caching):
++    """Compare native generation across different mixed prefill/decode shapes."""
++    params = SamplingParams(temperature=0, max_tokens=64, ignore_eos=True, logprobs=5)
++    outputs = []
++    for scheduler_cls in (Scheduler, AdaptiveBudgetScheduler):
++        with vllm_runner(
++            maybe_model_redirect("Qwen/Qwen3-1.7B"),
++            dtype="bfloat16",
++            max_model_len=4096,
++            max_num_batched_tokens=512,
++            max_num_seqs=4,
++            enable_chunked_prefill=True,
++            async_scheduling=False,
++            enable_prefix_caching=enable_prefix_caching,
++            enforce_eager=True,
++            scheduler_cls=scheduler_cls,
++            additional_config={
++                "adaptive_budget": {
++                    "high_budget": 512,
++                    "low_budget": 128,
++                    "guard_budget": 256,
++                    "enter_prefills": 1,
++                }
++            },
++        ) as runner:
++            tokenizer = runner.llm.get_tokenizer()
++            short = tokenizer.encode("What is the capital of France? Explain briefly.")
++            body = tokenizer.encode(
++                "A scheduler shares compute between input and output tokens. "
++            )
++            prompts = [
++                {"prompt_token_ids": short},
++                {"prompt_token_ids": (body * 200)[:1536]},
++                {"prompt_token_ids": (body * 220)[:2048]},
++            ]
++            batches = [runner.llm.generate(prompts, params)]
++            if enable_prefix_caching:
++                batches.append(runner.llm.generate(prompts, params))
++                assert sum(out.num_cached_tokens for out in batches[1]) > 0
++            completions = [out.outputs[0] for batch in batches for out in batch]
++            assert all(
++                len(out.token_ids) == 64 and out.finish_reason == "length"
++                for out in completions
++            )
++            outputs.append(
++                [(list(out.token_ids), out.text, out.logprobs) for out in completions]
++            )
++    check_logprobs_close(
++        outputs_0_lst=outputs[0],
++        outputs_1_lst=outputs[1],
++        name_0="native",
++        name_1="adaptive",
++    )
+diff --git a/tests/v1/core/utils.py b/tests/v1/core/utils.py
+index 4833e29..6ceb50a 100644
+--- a/tests/v1/core/utils.py
++++ b/tests/v1/core/utils.py
+@@ -91,6 +91,7 @@ def create_scheduler(
+     diffusion_canvas_length: int | None = None,
+     scheduler_cls: type[Scheduler] | None = None,
+     lora_config: LoRAConfig | None = None,
++    additional_config: dict | None = None,
+ ) -> Scheduler | AsyncScheduler:
+     """Create scheduler under test.
+ 
+@@ -207,6 +208,7 @@ def create_scheduler(
+         diffusion_config = DiffusionConfig(canvas_length=diffusion_canvas_length)
+ 
+     vllm_config = VllmConfig(
++        additional_config=additional_config or {},
+         scheduler_config=scheduler_config,
+         model_config=model_config,
+         cache_config=cache_config,

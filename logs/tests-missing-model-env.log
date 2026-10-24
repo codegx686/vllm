@@ -1,0 +1,436 @@
+..................................FFFFFFFFFFFFFFF....F                   [100%]
+=================================== FAILURES ===================================
+________________ test_off_has_native_schedule_and_cancellation _________________
+
+make_scheduler = <function make_scheduler.<locals>.make at 0x7f58658a8cc0>
+
+    def test_off_has_native_schedule_and_cancellation(make_scheduler):
+>       a, b = make_scheduler(mode="off"), make_scheduler(cls=Scheduler)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_scheduler.py:116: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_scheduler.py:60: in make
+    model=os.environ["AB_TEST_MODEL"], dtype="bfloat16", max_model_len=16384
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = environ({'SHELL': '/bin/bash', 'PWD': '/root/autodl-tmp/vllm-budget-lab', 'LOGNAME': 'root', 'TZ': 'Asia/Shanghai', 'M...hedule_and_cancellation (call)', 'AB_CONFIG': '/tmp/pytest-of-root/pytest-8/test_off_has_native_schedule_a0/off.json'})
+key = 'AB_TEST_MODEL'
+
+>   ???
+E   KeyError: 'AB_TEST_MODEL'
+
+<frozen os>:685: KeyError
+________ test_real_allocator_respects_budget_and_restores_capacity[512] ________
+
+make_scheduler = <function make_scheduler.<locals>.make at 0x7f58659494e0>
+budget = 512
+
+    @pytest.mark.parametrize("budget", [512, 1024, 2048, 4096, 8192])
+    def test_real_allocator_respects_budget_and_restores_capacity(make_scheduler, budget):
+>       s = make_scheduler(budget=budget)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_scheduler.py:128: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_scheduler.py:60: in make
+    model=os.environ["AB_TEST_MODEL"], dtype="bfloat16", max_model_len=16384
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = environ({'SHELL': '/bin/bash', 'PWD': '/root/autodl-tmp/vllm-budget-lab', 'LOGNAME': 'root', 'TZ': 'Asia/Shanghai', 'M...stores_capacity[512] (call)', 'AB_CONFIG': '/tmp/pytest-of-root/pytest-8/test_real_allocator_respects_b0/static.json'})
+key = 'AB_TEST_MODEL'
+
+>   ???
+E   KeyError: 'AB_TEST_MODEL'
+
+<frozen os>:685: KeyError
+_______ test_real_allocator_respects_budget_and_restores_capacity[1024] ________
+
+make_scheduler = <function make_scheduler.<locals>.make at 0x7f58659496c0>
+budget = 1024
+
+    @pytest.mark.parametrize("budget", [512, 1024, 2048, 4096, 8192])
+    def test_real_allocator_respects_budget_and_restores_capacity(make_scheduler, budget):
+>       s = make_scheduler(budget=budget)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_scheduler.py:128: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_scheduler.py:60: in make
+    model=os.environ["AB_TEST_MODEL"], dtype="bfloat16", max_model_len=16384
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = environ({'SHELL': '/bin/bash', 'PWD': '/root/autodl-tmp/vllm-budget-lab', 'LOGNAME': 'root', 'TZ': 'Asia/Shanghai', 'M...tores_capacity[1024] (call)', 'AB_CONFIG': '/tmp/pytest-of-root/pytest-8/test_real_allocator_respects_b1/static.json'})
+key = 'AB_TEST_MODEL'
+
+>   ???
+E   KeyError: 'AB_TEST_MODEL'
+
+<frozen os>:685: KeyError
+_______ test_real_allocator_respects_budget_and_restores_capacity[2048] ________
+
+make_scheduler = <function make_scheduler.<locals>.make at 0x7f58659498a0>
+budget = 2048
+
+    @pytest.mark.parametrize("budget", [512, 1024, 2048, 4096, 8192])
+    def test_real_allocator_respects_budget_and_restores_capacity(make_scheduler, budget):
+>       s = make_scheduler(budget=budget)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_scheduler.py:128: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_scheduler.py:60: in make
+    model=os.environ["AB_TEST_MODEL"], dtype="bfloat16", max_model_len=16384
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = environ({'SHELL': '/bin/bash', 'PWD': '/root/autodl-tmp/vllm-budget-lab', 'LOGNAME': 'root', 'TZ': 'Asia/Shanghai', 'M...tores_capacity[2048] (call)', 'AB_CONFIG': '/tmp/pytest-of-root/pytest-8/test_real_allocator_respects_b2/static.json'})
+key = 'AB_TEST_MODEL'
+
+>   ???
+E   KeyError: 'AB_TEST_MODEL'
+
+<frozen os>:685: KeyError
+_______ test_real_allocator_respects_budget_and_restores_capacity[4096] ________
+
+make_scheduler = <function make_scheduler.<locals>.make at 0x7f5865949a80>
+budget = 4096
+
+    @pytest.mark.parametrize("budget", [512, 1024, 2048, 4096, 8192])
+    def test_real_allocator_respects_budget_and_restores_capacity(make_scheduler, budget):
+>       s = make_scheduler(budget=budget)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_scheduler.py:128: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_scheduler.py:60: in make
+    model=os.environ["AB_TEST_MODEL"], dtype="bfloat16", max_model_len=16384
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = environ({'SHELL': '/bin/bash', 'PWD': '/root/autodl-tmp/vllm-budget-lab', 'LOGNAME': 'root', 'TZ': 'Asia/Shanghai', 'M...tores_capacity[4096] (call)', 'AB_CONFIG': '/tmp/pytest-of-root/pytest-8/test_real_allocator_respects_b3/static.json'})
+key = 'AB_TEST_MODEL'
+
+>   ???
+E   KeyError: 'AB_TEST_MODEL'
+
+<frozen os>:685: KeyError
+_______ test_real_allocator_respects_budget_and_restores_capacity[8192] ________
+
+make_scheduler = <function make_scheduler.<locals>.make at 0x7f5865949da0>
+budget = 8192
+
+    @pytest.mark.parametrize("budget", [512, 1024, 2048, 4096, 8192])
+    def test_real_allocator_respects_budget_and_restores_capacity(make_scheduler, budget):
+>       s = make_scheduler(budget=budget)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_scheduler.py:128: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_scheduler.py:60: in make
+    model=os.environ["AB_TEST_MODEL"], dtype="bfloat16", max_model_len=16384
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = environ({'SHELL': '/bin/bash', 'PWD': '/root/autodl-tmp/vllm-budget-lab', 'LOGNAME': 'root', 'TZ': 'Asia/Shanghai', 'M...tores_capacity[8192] (call)', 'AB_CONFIG': '/tmp/pytest-of-root/pytest-8/test_real_allocator_respects_b4/static.json'})
+key = 'AB_TEST_MODEL'
+
+>   ???
+E   KeyError: 'AB_TEST_MODEL'
+
+<frozen os>:685: KeyError
+______________ test_capacity_restored_when_native_schedule_raises ______________
+
+make_scheduler = <function make_scheduler.<locals>.make at 0x7f5865949e40>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f5865883560>
+
+    def test_capacity_restored_when_native_schedule_raises(make_scheduler, monkeypatch):
+>       s = make_scheduler()
+            ^^^^^^^^^^^^^^^^
+
+tests/test_scheduler.py:139: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_scheduler.py:60: in make
+    model=os.environ["AB_TEST_MODEL"], dtype="bfloat16", max_model_len=16384
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = environ({'SHELL': '/bin/bash', 'PWD': '/root/autodl-tmp/vllm-budget-lab', 'LOGNAME': 'root', 'TZ': 'Asia/Shanghai', 'M...tive_schedule_raises (call)', 'AB_CONFIG': '/tmp/pytest-of-root/pytest-8/test_capacity_restored_when_na0/static.json'})
+key = 'AB_TEST_MODEL'
+
+>   ???
+E   KeyError: 'AB_TEST_MODEL'
+
+<frozen os>:685: KeyError
+________________ test_stall_progress_and_blocked_request_filter ________________
+
+make_scheduler = <function make_scheduler.<locals>.make at 0x7f586594a3e0>
+
+    def test_stall_progress_and_blocked_request_filter(make_scheduler):
+>       s = make_scheduler()
+            ^^^^^^^^^^^^^^^^
+
+tests/test_scheduler.py:151: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_scheduler.py:60: in make
+    model=os.environ["AB_TEST_MODEL"], dtype="bfloat16", max_model_len=16384
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = environ({'SHELL': '/bin/bash', 'PWD': '/root/autodl-tmp/vllm-budget-lab', 'LOGNAME': 'root', 'TZ': 'Asia/Shanghai', 'M...ocked_request_filter (call)', 'AB_CONFIG': '/tmp/pytest-of-root/pytest-8/test_stall_progress_and_blocke0/static.json'})
+key = 'AB_TEST_MODEL'
+
+>   ???
+E   KeyError: 'AB_TEST_MODEL'
+
+<frozen os>:685: KeyError
+______ test_kv_pressure_preempts_and_resumes_without_losing_request[off] _______
+
+make_scheduler = <function make_scheduler.<locals>.make at 0x7f586594a5c0>
+mode = 'off'
+
+    @pytest.mark.parametrize("mode", ["off", "adaptive"])
+    def test_kv_pressure_preempts_and_resumes_without_losing_request(make_scheduler, mode):
+>       s = make_scheduler(mode=mode, blocks=11)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_scheduler.py:168: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_scheduler.py:60: in make
+    model=os.environ["AB_TEST_MODEL"], dtype="bfloat16", max_model_len=16384
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = environ({'SHELL': '/bin/bash', 'PWD': '/root/autodl-tmp/vllm-budget-lab', 'LOGNAME': 'root', 'TZ': 'Asia/Shanghai', 'M...out_losing_request[off] (call)', 'AB_CONFIG': '/tmp/pytest-of-root/pytest-8/test_kv_pressure_preempts_and_0/off.json'})
+key = 'AB_TEST_MODEL'
+
+>   ???
+E   KeyError: 'AB_TEST_MODEL'
+
+<frozen os>:685: KeyError
+____ test_kv_pressure_preempts_and_resumes_without_losing_request[adaptive] ____
+
+make_scheduler = <function make_scheduler.<locals>.make at 0x7f586594a8e0>
+mode = 'adaptive'
+
+    @pytest.mark.parametrize("mode", ["off", "adaptive"])
+    def test_kv_pressure_preempts_and_resumes_without_losing_request(make_scheduler, mode):
+>       s = make_scheduler(mode=mode, blocks=11)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_scheduler.py:168: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_scheduler.py:60: in make
+    model=os.environ["AB_TEST_MODEL"], dtype="bfloat16", max_model_len=16384
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = environ({'SHELL': '/bin/bash', 'PWD': '/root/autodl-tmp/vllm-budget-lab', 'LOGNAME': 'root', 'TZ': 'Asia/Shanghai', 'M..._request[adaptive] (call)', 'AB_CONFIG': '/tmp/pytest-of-root/pytest-8/test_kv_pressure_preempts_and_1/adaptive.json'})
+key = 'AB_TEST_MODEL'
+
+>   ???
+E   KeyError: 'AB_TEST_MODEL'
+
+<frozen os>:685: KeyError
+____________ test_additional_config_and_trace_record_actual_budget _____________
+
+make_scheduler = <function make_scheduler.<locals>.make at 0x7f586594ab60>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-8/test_additional_config_and_tra0')
+
+    def test_additional_config_and_trace_record_actual_budget(make_scheduler, tmp_path):
+        trace_path = tmp_path / "schedule.jsonl"
+>       s = make_scheduler(
+            additional=True, budget=512, policy={"trace_path": str(trace_path)}
+        )
+
+tests/test_scheduler.py:200: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_scheduler.py:60: in make
+    model=os.environ["AB_TEST_MODEL"], dtype="bfloat16", max_model_len=16384
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = environ({'SHELL': '/bin/bash', 'PWD': '/root/autodl-tmp/vllm-budget-lab', 'LOGNAME': 'root', 'TZ': 'Asia/Shanghai', 'M...b64:', 'PYTEST_CURRENT_TEST': 'tests/test_scheduler.py::test_additional_config_and_trace_record_actual_budget (call)'})
+key = 'AB_TEST_MODEL'
+
+>   ???
+E   KeyError: 'AB_TEST_MODEL'
+
+<frozen os>:685: KeyError
+________________ test_reused_request_id_does_not_inherit_stall _________________
+
+make_scheduler = <function make_scheduler.<locals>.make at 0x7f586594a840>
+
+    def test_reused_request_id_does_not_inherit_stall(make_scheduler):
+>       s = make_scheduler(mode="adaptive")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_scheduler.py:214: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_scheduler.py:60: in make
+    model=os.environ["AB_TEST_MODEL"], dtype="bfloat16", max_model_len=16384
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = environ({'SHELL': '/bin/bash', 'PWD': '/root/autodl-tmp/vllm-budget-lab', 'LOGNAME': 'root', 'TZ': 'Asia/Shanghai', 'M..._not_inherit_stall (call)', 'AB_CONFIG': '/tmp/pytest-of-root/pytest-8/test_reused_request_id_does_no0/adaptive.json'})
+key = 'AB_TEST_MODEL'
+
+>   ???
+E   KeyError: 'AB_TEST_MODEL'
+
+<frozen os>:685: KeyError
+__________________ test_off_rejects_async_scheduler_mismatch ___________________
+
+make_scheduler = <function make_scheduler.<locals>.make at 0x7f586594ac00>
+
+    def test_off_rejects_async_scheduler_mismatch(make_scheduler):
+        with pytest.raises(ValueError, match="async_scheduling=False"):
+>           make_scheduler(mode="off", async_scheduling=True)
+
+tests/test_scheduler.py:224: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_scheduler.py:60: in make
+    model=os.environ["AB_TEST_MODEL"], dtype="bfloat16", max_model_len=16384
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = environ({'SHELL': '/bin/bash', 'PWD': '/root/autodl-tmp/vllm-budget-lab', 'LOGNAME': 'root', 'TZ': 'Asia/Shanghai', 'M...sync_scheduler_mismatch (call)', 'AB_CONFIG': '/tmp/pytest-of-root/pytest-8/test_off_rejects_async_schedul0/off.json'})
+key = 'AB_TEST_MODEL'
+
+>   ???
+E   KeyError: 'AB_TEST_MODEL'
+
+<frozen os>:685: KeyError
+__________ test_mixed_work_selects_low_budget_through_real_scheduler ___________
+
+make_scheduler = <function make_scheduler.<locals>.make at 0x7f586594a8e0>
+
+    def test_mixed_work_selects_low_budget_through_real_scheduler(make_scheduler):
+>       s = make_scheduler(
+            mode="adaptive",
+            additional=True,
+            policy={"enter_prefills": 1, "guard_enabled": False},
+        )
+
+tests/test_scheduler.py:228: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_scheduler.py:60: in make
+    model=os.environ["AB_TEST_MODEL"], dtype="bfloat16", max_model_len=16384
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = environ({'SHELL': '/bin/bash', 'PWD': '/root/autodl-tmp/vllm-budget-lab', 'LOGNAME': 'root', 'TZ': 'Asia/Shanghai', 'M...', 'PYTEST_CURRENT_TEST': 'tests/test_scheduler.py::test_mixed_work_selects_low_budget_through_real_scheduler (call)'})
+key = 'AB_TEST_MODEL'
+
+>   ???
+E   KeyError: 'AB_TEST_MODEL'
+
+<frozen os>:685: KeyError
+______________ test_upstream_example_mixed_work_and_cancellation _______________
+
+make_scheduler = <function make_scheduler.<locals>.make at 0x7f586594a3e0>
+
+    def test_upstream_example_mixed_work_and_cancellation(make_scheduler):
+>       s = make_scheduler(
+            cls=ExampleScheduler,
+            additional=True,
+            policy_only=True,
+            policy={"enter_prefills": 1},
+        )
+
+tests/test_scheduler.py:254: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_scheduler.py:60: in make
+    model=os.environ["AB_TEST_MODEL"], dtype="bfloat16", max_model_len=16384
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = environ({'SHELL': '/bin/bash', 'PWD': '/root/autodl-tmp/vllm-budget-lab', 'LOGNAME': 'root', 'TZ': 'Asia/Shanghai', 'M..../lib64:', 'PYTEST_CURRENT_TEST': 'tests/test_scheduler.py::test_upstream_example_mixed_work_and_cancellation (call)'})
+key = 'AB_TEST_MODEL'
+
+>   ???
+E   KeyError: 'AB_TEST_MODEL'
+
+<frozen os>:685: KeyError
+____________ test_trace_io_failure_does_not_discard_allocated_step _____________
+
+make_scheduler = <function make_scheduler.<locals>.make at 0x7f586594a160>
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-8/test_trace_io_failure_does_not0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f5865863f50>
+
+    def test_trace_io_failure_does_not_discard_allocated_step(
+        make_scheduler, tmp_path, monkeypatch
+    ):
+        """An external diagnostics failure must not turn a committed schedule into a retry."""
+        from pathlib import Path
+    
+        trace_path = tmp_path / "failing-trace.jsonl"
+        open_file = Path.open
+    
+        class FailingTrace:
+            def __init__(self, stream):
+                self.stream = stream
+                self.writes = 0
+    
+            def write(self, data):
+                self.writes += 1
+                if self.writes > 1:
+                    raise OSError("simulated full trace filesystem")
+                return self.stream.write(data)
+    
+            def flush(self):
+                self.stream.flush()
+    
+            def close(self):
+                self.stream.close()
+    
+        def open_trace(path, *args, **kwargs):
+            stream = open_file(path, *args, **kwargs)
+            return FailingTrace(stream) if path == trace_path else stream
+    
+        monkeypatch.setattr(Path, "open", open_trace)
+>       s = make_scheduler(
+            budget=512, additional=True, policy={"trace_path": str(trace_path)}
+        )
+
+tests/test_scheduler.py:338: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_scheduler.py:60: in make
+    model=os.environ["AB_TEST_MODEL"], dtype="bfloat16", max_model_len=16384
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = environ({'SHELL': '/bin/bash', 'PWD': '/root/autodl-tmp/vllm-budget-lab', 'LOGNAME': 'root', 'TZ': 'Asia/Shanghai', 'M...b64:', 'PYTEST_CURRENT_TEST': 'tests/test_scheduler.py::test_trace_io_failure_does_not_discard_allocated_step (call)'})
+key = 'AB_TEST_MODEL'
+
+>   ???
+E   KeyError: 'AB_TEST_MODEL'
+
+<frozen os>:685: KeyError
+=============================== warnings summary ===============================
+.venv/lib/python3.12/site-packages/torch/jit/_script.py:365: 14 warnings
+  /root/autodl-tmp/vllm-budget-lab/.venv/lib/python3.12/site-packages/torch/jit/_script.py:365: DeprecationWarning: `torch.jit.script_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_scheduler.py::test_off_has_native_schedule_and_cancellation
+FAILED tests/test_scheduler.py::test_real_allocator_respects_budget_and_restores_capacity[512]
+FAILED tests/test_scheduler.py::test_real_allocator_respects_budget_and_restores_capacity[1024]
+FAILED tests/test_scheduler.py::test_real_allocator_respects_budget_and_restores_capacity[2048]
+FAILED tests/test_scheduler.py::test_real_allocator_respects_budget_and_restores_capacity[4096]
+FAILED tests/test_scheduler.py::test_real_allocator_respects_budget_and_restores_capacity[8192]
+FAILED tests/test_scheduler.py::test_capacity_restored_when_native_schedule_raises
+FAILED tests/test_scheduler.py::test_stall_progress_and_blocked_request_filter
+FAILED tests/test_scheduler.py::test_kv_pressure_preempts_and_resumes_without_losing_request[off]
+FAILED tests/test_scheduler.py::test_kv_pressure_preempts_and_resumes_without_losing_request[adaptive]
+FAILED tests/test_scheduler.py::test_additional_config_and_trace_record_actual_budget
+FAILED tests/test_scheduler.py::test_reused_request_id_does_not_inherit_stall
+FAILED tests/test_scheduler.py::test_off_rejects_async_scheduler_mismatch - K...
+FAILED tests/test_scheduler.py::test_mixed_work_selects_low_budget_through_real_scheduler
+FAILED tests/test_scheduler.py::test_upstream_example_mixed_work_and_cancellation
+FAILED tests/test_scheduler.py::test_trace_io_failure_does_not_discard_allocated_step
+16 failed, 38 passed, 14 warnings in 6.35s

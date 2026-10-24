@@ -1,0 +1,338 @@
+[
+  {
+    "id": "303-0",
+    "at": 0.0012662989616938835,
+    "input_tokens": 8192,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "303-1",
+    "at": 0.5387521504582345,
+    "input_tokens": 512,
+    "output_tokens": 256,
+    "kind": "short"
+  },
+  {
+    "id": "303-2",
+    "at": 1.0077962237870337,
+    "input_tokens": 512,
+    "output_tokens": 256,
+    "kind": "short"
+  },
+  {
+    "id": "303-3",
+    "at": 1.5397761993307468,
+    "input_tokens": 8192,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "303-4",
+    "at": 2.037869743294457,
+    "input_tokens": 512,
+    "output_tokens": 256,
+    "kind": "short"
+  },
+  {
+    "id": "303-5",
+    "at": 2.510347047319034,
+    "input_tokens": 512,
+    "output_tokens": 256,
+    "kind": "short"
+  },
+  {
+    "id": "303-6",
+    "at": 3.020650657113309,
+    "input_tokens": 8192,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "303-7",
+    "at": 3.5159311736100016,
+    "input_tokens": 512,
+    "output_tokens": 256,
+    "kind": "short"
+  },
+  {
+    "id": "303-8",
+    "at": 4.016388365171211,
+    "input_tokens": 512,
+    "output_tokens": 256,
+    "kind": "short"
+  },
+  {
+    "id": "303-9",
+    "at": 4.531587450081918,
+    "input_tokens": 8192,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "303-10",
+    "at": 5.033109205391493,
+    "input_tokens": 512,
+    "output_tokens": 256,
+    "kind": "short"
+  },
+  {
+    "id": "303-11",
+    "at": 5.5102615769292544,
+    "input_tokens": 512,
+    "output_tokens": 256,
+    "kind": "short"
+  },
+  {
+    "id": "303-12",
+    "at": 6.021756502619948,
+    "input_tokens": 8192,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "303-13",
+    "at": 6.52744037152296,
+    "input_tokens": 512,
+    "output_tokens": 256,
+    "kind": "short"
+  },
+  {
+    "id": "303-14",
+    "at": 7.023754647917027,
+    "input_tokens": 512,
+    "output_tokens": 256,
+    "kind": "short"
+  },
+  {
+    "id": "303-15",
+    "at": 7.504858344106361,
+    "input_tokens": 8192,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "303-16",
+    "at": 8.015644580166976,
+    "input_tokens": 512,
+    "output_tokens": 256,
+    "kind": "short"
+  },
+  {
+    "id": "303-17",
+    "at": 8.519715388801666,
+    "input_tokens": 512,
+    "output_tokens": 256,
+    "kind": "short"
+  },
+  {
+    "id": "303-18",
+    "at": 9.036964113713543,
+    "input_tokens": 8192,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "303-19",
+    "at": 9.532897124475307,
+    "input_tokens": 512,
+    "output_tokens": 256,
+    "kind": "short"
+  },
+  {
+    "id": "303-20",
+    "at": 10.02699294609212,
+    "input_tokens": 512,
+    "output_tokens": 256,
+    "kind": "short"
+  },
+  {
+    "id": "303-21",
+    "at": 10.511207429380905,
+    "input_tokens": 8192,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "303-22",
+    "at": 11.037549501370924,
+    "input_tokens": 512,
+    "output_tokens": 256,
+    "kind": "short"
+  },
+  {
+    "id": "303-23",
+    "at": 11.509168681566505,
+    "input_tokens": 512,
+    "output_tokens": 256,
+    "kind": "short"
+  },
+  {
+    "id": "303-24",
+    "at": 12.013513093038979,
+    "input_tokens": 8192,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "303-25",
+    "at": 12.50627862966299,
+    "input_tokens": 512,
+    "output_tokens": 256,
+    "kind": "short"
+  },
+  {
+    "id": "303-26",
+    "at": 13.023560352412986,
+    "input_tokens": 512,
+    "output_tokens": 256,
+    "kind": "short"
+  },
+  {
+    "id": "303-27",
+    "at": 13.531825452181032,
+    "input_tokens": 8192,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "303-28",
+    "at": 14.02807255305308,
+    "input_tokens": 512,
+    "output_tokens": 256,
+    "kind": "short"
+  },
+  {
+    "id": "303-29",
+    "at": 14.533088167820157,
+    "input_tokens": 512,
+    "output_tokens": 256,
+    "kind": "short"
+  },
+  {
+    "id": "303-30",
+    "at": 15.028097378171614,
+    "input_tokens": 8192,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "303-31",
+    "at": 15.526125850653834,
+    "input_tokens": 512,
+    "output_tokens": 256,
+    "kind": "short"
+  },
+  {
+    "id": "303-32",
+    "at": 16.010059419728993,
+    "input_tokens": 512,
+    "output_tokens": 256,
+    "kind": "short"
+  },
+  {
+    "id": "303-33",
+    "at": 16.53834075517932,
+    "input_tokens": 8192,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "303-34",
+    "at": 17.039619380474996,
+    "input_tokens": 512,
+    "output_tokens": 256,
+    "kind": "short"
+  },
+  {
+    "id": "303-35",
+    "at": 17.52930549677485,
+    "input_tokens": 512,
+    "output_tokens": 256,
+    "kind": "short"
+  },
+  {
+    "id": "303-36",
+    "at": 18.039879770285257,
+    "input_tokens": 8192,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "303-37",
+    "at": 18.535342016301247,
+    "input_tokens": 512,
+    "output_tokens": 256,
+    "kind": "short"
+  },
+  {
+    "id": "303-38",
+    "at": 19.035090695884588,
+    "input_tokens": 512,
+    "output_tokens": 256,
+    "kind": "short"
+  },
+  {
+    "id": "303-39",
+    "at": 19.530272753916776,
+    "input_tokens": 8192,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "303-40",
+    "at": 20.03247229426803,
+    "input_tokens": 512,
+    "output_tokens": 256,
+    "kind": "short"
+  },
+  {
+    "id": "303-41",
+    "at": 20.527640831361136,
+    "input_tokens": 512,
+    "output_tokens": 256,
+    "kind": "short"
+  },
+  {
+    "id": "303-42",
+    "at": 21.005105437274896,
+    "input_tokens": 8192,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "303-43",
+    "at": 21.533492271222773,
+    "input_tokens": 512,
+    "output_tokens": 256,
+    "kind": "short"
+  },
+  {
+    "id": "303-44",
+    "at": 22.01409691157101,
+    "input_tokens": 512,
+    "output_tokens": 256,
+    "kind": "short"
+  },
+  {
+    "id": "303-45",
+    "at": 22.52574695675846,
+    "input_tokens": 8192,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "303-46",
+    "at": 23.035972808564082,
+    "input_tokens": 512,
+    "output_tokens": 256,
+    "kind": "short"
+  },
+  {
+    "id": "303-47",
+    "at": 23.519731959154786,
+    "input_tokens": 512,
+    "output_tokens": 256,
+    "kind": "short"
+  }
+]

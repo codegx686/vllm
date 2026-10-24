@@ -1,0 +1,29 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.1.1, pluggy-1.7.0 -- /root/autodl-tmp/vllm-budget-upstream/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /root/autodl-tmp/vllm-budget-upstream
+configfile: pyproject.toml
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 17 items / 1 deselected / 16 selected
+
+tests/plugins_tests/test_scheduler_plugins.py::test_adaptive_budget_rejects_invalid_config[config0] PASSED [  6%]
+tests/plugins_tests/test_scheduler_plugins.py::test_adaptive_budget_rejects_invalid_config[config1] PASSED [ 12%]
+tests/plugins_tests/test_scheduler_plugins.py::test_adaptive_budget_rejects_invalid_config[config2] PASSED [ 18%]
+tests/plugins_tests/test_scheduler_plugins.py::test_adaptive_budget_rejects_invalid_config[config3] PASSED [ 25%]
+tests/plugins_tests/test_scheduler_plugins.py::test_adaptive_budget_rejects_invalid_config[config4] PASSED [ 31%]
+tests/plugins_tests/test_scheduler_plugins.py::test_adaptive_budget_rejects_invalid_config[config5] PASSED [ 37%]
+tests/plugins_tests/test_scheduler_plugins.py::test_adaptive_budget_rejects_invalid_config[config6] PASSED [ 43%]
+tests/plugins_tests/test_scheduler_plugins.py::test_adaptive_budget_rejects_invalid_config[config7] PASSED [ 50%]
+tests/plugins_tests/test_scheduler_plugins.py::test_adaptive_budget_rejects_invalid_config[config8] PASSED [ 56%]
+tests/plugins_tests/test_scheduler_plugins.py::test_adaptive_budget_rejects_invalid_config[config9] PASSED [ 62%]
+tests/plugins_tests/test_scheduler_plugins.py::test_adaptive_budget_dwell_and_unmixed_release PASSED [ 68%]
+tests/plugins_tests/test_scheduler_plugins.py::test_adaptive_budget_guard_is_rate_limited PASSED [ 75%]
+tests/plugins_tests/test_scheduler_plugins.py::test_adaptive_budget_preserves_capacity_and_request_lifecycle PASSED [ 81%]
+tests/plugins_tests/test_scheduler_plugins.py::test_adaptive_budget_rejects_capacity_overflow PASSED [ 87%]
+tests/plugins_tests/test_scheduler_plugins.py::test_adaptive_budget_generation[False] 
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! KeyboardInterrupt !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+/root/miniconda3/lib/python3.12/socket.py:837: KeyboardInterrupt
+(to show a full traceback on KeyboardInterrupt use --full-trace)
+================= 14 passed, 1 deselected in 134.84s (0:02:14) =================

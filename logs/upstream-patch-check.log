@@ -1,0 +1,10 @@
+49d634bd6a3dc7433d8fb464821c95c76db85350
+ .buildkite/test_areas/plugins.yaml             |   8 ++
+ docs/features/README.md                        |   3 +
+ docs/features/adaptive_budget.md               |  79 +++++++++++++
+ examples/features/adaptive_budget/scheduler.py | 150 ++++++++++++++++++++++++
+ tests/plugins_tests/test_scheduler_plugins.py  | 153 +++++++++++++++++++++++++
+ tests/v1/core/utils.py                         |   2 +
+ 6 files changed, 395 insertions(+)
+git diff --check: PASS
+clean-index git apply --cached --check: PASS

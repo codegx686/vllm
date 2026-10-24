@@ -1,0 +1,218 @@
+F.FFFFFFFFFFFF                                                           [100%]
+=================================== FAILURES ===================================
+_____ test_rejects_non_integral_budgets_and_nonfinite_thresholds[changes0] _____
+
+changes = {'low_budget': 1.5}
+
+    @pytest.mark.parametrize('changes', [
+        {'low_budget': 1.5}, {'high_budget': True}, {'enter_prefills': 2.5},
+        {'exit_prefills': False}, {'min_dwell_steps': 1.5},
+        {'guard_interval_steps': True}, {'guard_enabled': 'false'},
+        {'max_stall_ms': float('nan')}, {'max_stall_ms': float('inf')},
+        {'mode': 'static', 'static_budget': True},
+    ])
+    def test_rejects_non_integral_budgets_and_nonfinite_thresholds(changes):
+        """JSON values must not leak floats or booleans into native token accounting."""
+>       with pytest.raises(ValueError):
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_controller.py:103: Failed
+_____ test_rejects_non_integral_budgets_and_nonfinite_thresholds[changes2] _____
+
+changes = {'enter_prefills': 2.5}
+
+    @pytest.mark.parametrize('changes', [
+        {'low_budget': 1.5}, {'high_budget': True}, {'enter_prefills': 2.5},
+        {'exit_prefills': False}, {'min_dwell_steps': 1.5},
+        {'guard_interval_steps': True}, {'guard_enabled': 'false'},
+        {'max_stall_ms': float('nan')}, {'max_stall_ms': float('inf')},
+        {'mode': 'static', 'static_budget': True},
+    ])
+    def test_rejects_non_integral_budgets_and_nonfinite_thresholds(changes):
+        """JSON values must not leak floats or booleans into native token accounting."""
+>       with pytest.raises(ValueError):
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_controller.py:103: Failed
+_____ test_rejects_non_integral_budgets_and_nonfinite_thresholds[changes3] _____
+
+changes = {'exit_prefills': False}
+
+    @pytest.mark.parametrize('changes', [
+        {'low_budget': 1.5}, {'high_budget': True}, {'enter_prefills': 2.5},
+        {'exit_prefills': False}, {'min_dwell_steps': 1.5},
+        {'guard_interval_steps': True}, {'guard_enabled': 'false'},
+        {'max_stall_ms': float('nan')}, {'max_stall_ms': float('inf')},
+        {'mode': 'static', 'static_budget': True},
+    ])
+    def test_rejects_non_integral_budgets_and_nonfinite_thresholds(changes):
+        """JSON values must not leak floats or booleans into native token accounting."""
+>       with pytest.raises(ValueError):
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_controller.py:103: Failed
+_____ test_rejects_non_integral_budgets_and_nonfinite_thresholds[changes4] _____
+
+changes = {'min_dwell_steps': 1.5}
+
+    @pytest.mark.parametrize('changes', [
+        {'low_budget': 1.5}, {'high_budget': True}, {'enter_prefills': 2.5},
+        {'exit_prefills': False}, {'min_dwell_steps': 1.5},
+        {'guard_interval_steps': True}, {'guard_enabled': 'false'},
+        {'max_stall_ms': float('nan')}, {'max_stall_ms': float('inf')},
+        {'mode': 'static', 'static_budget': True},
+    ])
+    def test_rejects_non_integral_budgets_and_nonfinite_thresholds(changes):
+        """JSON values must not leak floats or booleans into native token accounting."""
+>       with pytest.raises(ValueError):
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_controller.py:103: Failed
+_____ test_rejects_non_integral_budgets_and_nonfinite_thresholds[changes5] _____
+
+changes = {'guard_interval_steps': True}
+
+    @pytest.mark.parametrize('changes', [
+        {'low_budget': 1.5}, {'high_budget': True}, {'enter_prefills': 2.5},
+        {'exit_prefills': False}, {'min_dwell_steps': 1.5},
+        {'guard_interval_steps': True}, {'guard_enabled': 'false'},
+        {'max_stall_ms': float('nan')}, {'max_stall_ms': float('inf')},
+        {'mode': 'static', 'static_budget': True},
+    ])
+    def test_rejects_non_integral_budgets_and_nonfinite_thresholds(changes):
+        """JSON values must not leak floats or booleans into native token accounting."""
+>       with pytest.raises(ValueError):
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_controller.py:103: Failed
+_____ test_rejects_non_integral_budgets_and_nonfinite_thresholds[changes6] _____
+
+changes = {'guard_enabled': 'false'}
+
+    @pytest.mark.parametrize('changes', [
+        {'low_budget': 1.5}, {'high_budget': True}, {'enter_prefills': 2.5},
+        {'exit_prefills': False}, {'min_dwell_steps': 1.5},
+        {'guard_interval_steps': True}, {'guard_enabled': 'false'},
+        {'max_stall_ms': float('nan')}, {'max_stall_ms': float('inf')},
+        {'mode': 'static', 'static_budget': True},
+    ])
+    def test_rejects_non_integral_budgets_and_nonfinite_thresholds(changes):
+        """JSON values must not leak floats or booleans into native token accounting."""
+>       with pytest.raises(ValueError):
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_controller.py:103: Failed
+_____ test_rejects_non_integral_budgets_and_nonfinite_thresholds[changes7] _____
+
+changes = {'max_stall_ms': nan}
+
+    @pytest.mark.parametrize('changes', [
+        {'low_budget': 1.5}, {'high_budget': True}, {'enter_prefills': 2.5},
+        {'exit_prefills': False}, {'min_dwell_steps': 1.5},
+        {'guard_interval_steps': True}, {'guard_enabled': 'false'},
+        {'max_stall_ms': float('nan')}, {'max_stall_ms': float('inf')},
+        {'mode': 'static', 'static_budget': True},
+    ])
+    def test_rejects_non_integral_budgets_and_nonfinite_thresholds(changes):
+        """JSON values must not leak floats or booleans into native token accounting."""
+>       with pytest.raises(ValueError):
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_controller.py:103: Failed
+_____ test_rejects_non_integral_budgets_and_nonfinite_thresholds[changes8] _____
+
+changes = {'max_stall_ms': inf}
+
+    @pytest.mark.parametrize('changes', [
+        {'low_budget': 1.5}, {'high_budget': True}, {'enter_prefills': 2.5},
+        {'exit_prefills': False}, {'min_dwell_steps': 1.5},
+        {'guard_interval_steps': True}, {'guard_enabled': 'false'},
+        {'max_stall_ms': float('nan')}, {'max_stall_ms': float('inf')},
+        {'mode': 'static', 'static_budget': True},
+    ])
+    def test_rejects_non_integral_budgets_and_nonfinite_thresholds(changes):
+        """JSON values must not leak floats or booleans into native token accounting."""
+>       with pytest.raises(ValueError):
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_controller.py:103: Failed
+_____ test_rejects_non_integral_budgets_and_nonfinite_thresholds[changes9] _____
+
+changes = {'mode': 'static', 'static_budget': True}
+
+    @pytest.mark.parametrize('changes', [
+        {'low_budget': 1.5}, {'high_budget': True}, {'enter_prefills': 2.5},
+        {'exit_prefills': False}, {'min_dwell_steps': 1.5},
+        {'guard_interval_steps': True}, {'guard_enabled': 'false'},
+        {'max_stall_ms': float('nan')}, {'max_stall_ms': float('inf')},
+        {'mode': 'static', 'static_budget': True},
+    ])
+    def test_rejects_non_integral_budgets_and_nonfinite_thresholds(changes):
+        """JSON values must not leak floats or booleans into native token accounting."""
+>       with pytest.raises(ValueError):
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_controller.py:103: Failed
+__________ test_invalid_observations_do_not_advance_controller[obs0] ___________
+
+obs = Observation(prefills=True, decodes=1, oldest_stall_ms=0.0, pending_prefill_tokens=0)
+
+    @pytest.mark.parametrize('obs', [Observation(True, 1), Observation(1, 1.5),
+        Observation(1, 1, float('nan')), Observation(1, 1, float('inf'))])
+    def test_invalid_observations_do_not_advance_controller(obs):
+        c = BudgetController(PolicyConfig(), 8192)
+>       with pytest.raises(ValueError):
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_controller.py:119: Failed
+__________ test_invalid_observations_do_not_advance_controller[obs1] ___________
+
+obs = Observation(prefills=1, decodes=1.5, oldest_stall_ms=0.0, pending_prefill_tokens=0)
+
+    @pytest.mark.parametrize('obs', [Observation(True, 1), Observation(1, 1.5),
+        Observation(1, 1, float('nan')), Observation(1, 1, float('inf'))])
+    def test_invalid_observations_do_not_advance_controller(obs):
+        c = BudgetController(PolicyConfig(), 8192)
+>       with pytest.raises(ValueError):
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_controller.py:119: Failed
+__________ test_invalid_observations_do_not_advance_controller[obs2] ___________
+
+obs = Observation(prefills=1, decodes=1, oldest_stall_ms=nan, pending_prefill_tokens=0)
+
+    @pytest.mark.parametrize('obs', [Observation(True, 1), Observation(1, 1.5),
+        Observation(1, 1, float('nan')), Observation(1, 1, float('inf'))])
+    def test_invalid_observations_do_not_advance_controller(obs):
+        c = BudgetController(PolicyConfig(), 8192)
+>       with pytest.raises(ValueError):
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_controller.py:119: Failed
+__________ test_invalid_observations_do_not_advance_controller[obs3] ___________
+
+obs = Observation(prefills=1, decodes=1, oldest_stall_ms=inf, pending_prefill_tokens=0)
+
+    @pytest.mark.parametrize('obs', [Observation(True, 1), Observation(1, 1.5),
+        Observation(1, 1, float('nan')), Observation(1, 1, float('inf'))])
+    def test_invalid_observations_do_not_advance_controller(obs):
+        c = BudgetController(PolicyConfig(), 8192)
+>       with pytest.raises(ValueError):
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_controller.py:119: Failed
+=========================== short test summary info ============================
+FAILED tests/test_controller.py::test_rejects_non_integral_budgets_and_nonfinite_thresholds[changes0]
+FAILED tests/test_controller.py::test_rejects_non_integral_budgets_and_nonfinite_thresholds[changes2]
+FAILED tests/test_controller.py::test_rejects_non_integral_budgets_and_nonfinite_thresholds[changes3]
+FAILED tests/test_controller.py::test_rejects_non_integral_budgets_and_nonfinite_thresholds[changes4]
+FAILED tests/test_controller.py::test_rejects_non_integral_budgets_and_nonfinite_thresholds[changes5]
+FAILED tests/test_controller.py::test_rejects_non_integral_budgets_and_nonfinite_thresholds[changes6]
+FAILED tests/test_controller.py::test_rejects_non_integral_budgets_and_nonfinite_thresholds[changes7]
+FAILED tests/test_controller.py::test_rejects_non_integral_budgets_and_nonfinite_thresholds[changes8]
+FAILED tests/test_controller.py::test_rejects_non_integral_budgets_and_nonfinite_thresholds[changes9]
+FAILED tests/test_controller.py::test_invalid_observations_do_not_advance_controller[obs0]
+FAILED tests/test_controller.py::test_invalid_observations_do_not_advance_controller[obs1]
+FAILED tests/test_controller.py::test_invalid_observations_do_not_advance_controller[obs2]
+FAILED tests/test_controller.py::test_invalid_observations_do_not_advance_controller[obs3]
+13 failed, 1 passed, 20 deselected in 0.07s

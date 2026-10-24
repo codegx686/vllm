@@ -1,0 +1,338 @@
+[
+  {
+    "id": "202-0-3",
+    "at": 0.015846995232091016,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "202-0-2",
+    "at": 0.03275504641119622,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "202-0-1",
+    "at": 0.051582460086904515,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "202-0-0",
+    "at": 0.061110525957071636,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "202-0-6",
+    "at": 0.30288626426406784,
+    "input_tokens": 16384,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "202-0-7",
+    "at": 0.31612425699081403,
+    "input_tokens": 16384,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "202-0-5",
+    "at": 0.33421976711908735,
+    "input_tokens": 16384,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "202-0-4",
+    "at": 0.3541360267388837,
+    "input_tokens": 12288,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "202-0-11",
+    "at": 0.615378524582886,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "202-0-8",
+    "at": 0.6503804293937997,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "202-0-10",
+    "at": 0.65141939730821,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "202-0-9",
+    "at": 0.6603720372056414,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "202-1-0",
+    "at": 6.032181537346112,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "202-1-2",
+    "at": 6.034057135263054,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "202-1-1",
+    "at": 6.038087574320084,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "202-1-3",
+    "at": 6.05963124079421,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "202-1-7",
+    "at": 6.321672743539784,
+    "input_tokens": 12288,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "202-1-6",
+    "at": 6.335754723233926,
+    "input_tokens": 16384,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "202-1-5",
+    "at": 6.341787617354734,
+    "input_tokens": 16384,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "202-1-4",
+    "at": 6.366253581469025,
+    "input_tokens": 12288,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "202-1-11",
+    "at": 6.607988617443256,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "202-1-9",
+    "at": 6.614178250950098,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "202-1-10",
+    "at": 6.650139927727401,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "202-1-8",
+    "at": 6.67440532857063,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "202-2-1",
+    "at": 12.000929677591797,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "202-2-3",
+    "at": 12.016133646443352,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "202-2-2",
+    "at": 12.017039310881486,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "202-2-0",
+    "at": 12.03039760128302,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "202-2-7",
+    "at": 12.324652404722631,
+    "input_tokens": 16384,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "202-2-4",
+    "at": 12.3286282224223,
+    "input_tokens": 12288,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "202-2-6",
+    "at": 12.334857735623942,
+    "input_tokens": 12288,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "202-2-5",
+    "at": 12.355140263909691,
+    "input_tokens": 12288,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "202-2-8",
+    "at": 12.615350135742862,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "202-2-9",
+    "at": 12.623364457688584,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "202-2-10",
+    "at": 12.669232501661774,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "202-2-11",
+    "at": 12.67980481789464,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "202-3-2",
+    "at": 18.004590772159855,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "202-3-3",
+    "at": 18.01556766855276,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "202-3-0",
+    "at": 18.019387930020727,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "202-3-1",
+    "at": 18.02795966849863,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "202-3-6",
+    "at": 18.31924853656036,
+    "input_tokens": 16384,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "202-3-5",
+    "at": 18.327956041341643,
+    "input_tokens": 12288,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "202-3-4",
+    "at": 18.330716918940265,
+    "input_tokens": 16384,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "202-3-7",
+    "at": 18.370924955812168,
+    "input_tokens": 12288,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "202-3-10",
+    "at": 18.60121053760106,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "202-3-9",
+    "at": 18.64698073942922,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "202-3-11",
+    "at": 18.67656648139114,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "202-3-8",
+    "at": 18.677856699346393,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  }
+]

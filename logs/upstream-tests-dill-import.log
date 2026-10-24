@@ -1,0 +1,44 @@
+ImportError while loading conftest '/root/autodl-tmp/vllm-budget-upstream/tests/conftest.py'.
+tests/conftest.py:31: in <module>
+    import torch
+.venv/lib/python3.12/site-packages/torch/__init__.py:2650: in <module>
+    from torch import _VF as _VF, functional as functional  # usort: skip
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/torch/functional.py:8: in <module>
+    import torch.nn.functional as F
+.venv/lib/python3.12/site-packages/torch/nn/__init__.py:8: in <module>
+    from torch.nn.modules import *  # usort: skip # noqa: F403
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/torch/nn/modules/__init__.py:1: in <module>
+    from .module import Module  # usort: skip
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/torch/nn/modules/module.py:17: in <module>
+    from torch.utils._python_dispatch import is_traceable_wrapper_subclass
+.venv/lib/python3.12/site-packages/torch/utils/__init__.py:8: in <module>
+    from torch.utils import (
+.venv/lib/python3.12/site-packages/torch/utils/data/__init__.py:1: in <module>
+    from torch.utils.data.dataloader import (
+.venv/lib/python3.12/site-packages/torch/utils/data/dataloader.py:27: in <module>
+    import torch.utils.data.graph_settings
+.venv/lib/python3.12/site-packages/torch/utils/data/graph_settings.py:8: in <module>
+    from torch.utils.data.datapipes.iter.sharding import (
+.venv/lib/python3.12/site-packages/torch/utils/data/datapipes/__init__.py:1: in <module>
+    from torch.utils.data.datapipes import dataframe as dataframe, iter as iter, map as map
+.venv/lib/python3.12/site-packages/torch/utils/data/datapipes/dataframe/__init__.py:1: in <module>
+    from torch.utils.data.datapipes.dataframe.dataframes import (
+.venv/lib/python3.12/site-packages/torch/utils/data/datapipes/dataframe/dataframes.py:4: in <module>
+    from torch.utils.data.datapipes._decorator import functional_datapipe
+.venv/lib/python3.12/site-packages/torch/utils/data/datapipes/_decorator.py:8: in <module>
+    from torch.utils.data.datapipes.datapipe import IterDataPipe, MapDataPipe
+.venv/lib/python3.12/site-packages/torch/utils/data/datapipes/datapipe.py:17: in <module>
+    dill = import_dill()
+           ^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/torch/utils/_import_utils.py:30: in import_dill
+    import dill
+.venv/lib/python3.12/site-packages/dill/__init__.py:26: in <module>
+    from ._dill import (
+.venv/lib/python3.12/site-packages/dill/_dill.py:347: in <module>
+    class Pickler(StockPickler):
+.venv/lib/python3.12/site-packages/dill/_dill.py:358: in Pickler
+    from .settings import settings
+E   ModuleNotFoundError: No module named 'dill.settings'

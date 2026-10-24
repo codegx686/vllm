@@ -1,0 +1,142 @@
+policy scenario seed TTFT_mean TTFT_p95 TPOT_mean ITL_p99 E2E_mean tok/s
+static4096 burst 101 742.71 1427.72 9.5 102.95 3320.36 647.73
+static4096 burst 202 793.4 1504.04 9.64 106.7 3415.25 642.81
+static4096 burst 303 773.84 1514.41 9.75 106.28 3406.1 648.5
+static4096 steady 101 85.96 213.06 5.38 19.11 1232.77 416.62
+static4096 steady 202 86.71 213.18 5.35 19.27 1228.5 416.93
+static4096 steady 303 86.96 213.85 5.35 19.24 1228.11 416.25
+adaptive burst 101 880.54 1703.89 9.98 43.98 3567.49 635.5
+adaptive burst 202 935.49 1787.49 10.1 45.24 3663.47 634.62
+adaptive burst 303 908.69 1811.25 10.13 47.39 3628.55 641.63
+adaptive steady 101 84.06 205.83 5.4 12.53 1235.74 416.41
+adaptive steady 202 84.16 205.48 5.34 12.37 1223.74 416.82
+adaptive steady 303 84.94 207.57 5.34 12.57 1225.09 416.14
+ppas burst 101 958.76 1845.94 10.13 43.4 3685.06 634.49
+ppas burst 202 1041.69 1965.16 10.24 44.29 3801.63 628.22
+ppas burst 303 990.41 1980.07 10.28 44.52 3746.0 638.74
+ppas steady 101 83.76 205.63 5.37 12.45 1230.23 416.46
+ppas steady 202 84.43 206.57 5.41 12.59 1237.63 416.77
+ppas steady 303 84.65 206.36 5.37 12.47 1230.2 416.24
+native8192 burst 101 702.1 1319.87 9.24 148.41 3223.5 651.45
+native8192 burst 202 739.56 1436.72 9.42 151.48 3306.55 646.88
+native8192 burst 303 728.92 1412.84 9.57 165.75 3325.61 651.35
+native8192 steady 101 84.49 205.72 5.31 12.71 1217.1 416.81
+native8192 steady 202 83.9 204.22 5.27 12.58 1207.7 417.15
+native8192 steady 303 83.06 205.74 5.28 12.54 1209.74 416.54
+no_guard burst 101 953.48 1834.79 10.1 43.67 3669.17 635.96
+no_guard burst 202 1028.48 1961.15 10.18 44.33 3772.44 630.2
+no_guard burst 303 997.57 2006.21 10.31 44.13 3760.17 638.64
+no_guard steady 101 81.13 204.93 5.36 12.26 1223.97 416.56
+no_guard steady 202 83.79 205.45 5.36 12.53 1226.38 416.83
+no_guard steady 303 84.65 208.89 5.35 12.52 1226.33 416.19
+static2048 burst 101 829.79 1597.54 9.8 68.31 3471.81 642.7
+static2048 burst 202 890.55 1708.54 9.88 68.84 3560.11 637.55
+static2048 burst 303 864.8 1717.16 10.01 69.21 3552.27 644.3
+static2048 steady 101 89.97 224.11 5.35 37.13 1230.96 416.66
+static2048 steady 202 90.28 225.14 5.34 37.12 1230.23 416.77
+static2048 steady 303 90.16 223.11 5.35 37.22 1232.56 416.28
+no_hysteresis burst 101 875.32 1674.34 9.97 44.15 3560.62 639.75
+no_hysteresis burst 202 941.97 1797.91 10.01 45.52 3646.59 634.34
+no_hysteresis burst 303 915.77 1811.64 10.09 46.77 3624.6 642.3
+no_hysteresis steady 101 83.78 205.51 5.38 12.52 1230.8 416.46
+no_hysteresis steady 202 84.12 205.77 5.38 12.63 1230.95 416.72
+no_hysteresis steady 303 83.55 205.29 5.39 12.67 1233.84 415.98
+{
+  "runs": 42,
+  "requests": 2016,
+  "failed": 0,
+  "max_dispatch_delay_ms": 5.3958605200513095,
+  "policies": {
+    "adaptive": {
+      "steps": 19652,
+      "switches": 36,
+      "guards": 50,
+      "budget_violations": 0,
+      "preemptions": 0,
+      "decision_us_median": 12.524,
+      "decision_us_p99": 24.361,
+      "max_observed_stall_ms": 1650.0074500218034
+    },
+    "no_guard": {
+      "steps": 19815,
+      "switches": 36,
+      "guards": 0,
+      "budget_violations": 0,
+      "preemptions": 0,
+      "decision_us_median": 12.223,
+      "decision_us_p99": 27.08,
+      "max_observed_stall_ms": 1862.9088937304914
+    },
+    "no_hysteresis": {
+      "steps": 19614,
+      "switches": 38,
+      "guards": 51,
+      "budget_violations": 0,
+      "preemptions": 0,
+      "decision_us_median": 12.692,
+      "decision_us_p99": 25.468,
+      "max_observed_stall_ms": 1645.449694711715
+    },
+    "ppas": {
+      "steps": 19749,
+      "switches": 38,
+      "guards": 0,
+      "budget_violations": 0,
+      "preemptions": 0,
+      "decision_us_median": 12.749,
+      "decision_us_p99": 24.643,
+      "max_observed_stall_ms": 1870.3232579864562
+    },
+    "static2048": {
+      "steps": 19586,
+      "switches": 0,
+      "guards": 0,
+      "budget_violations": 0,
+      "preemptions": 0,
+      "decision_us_median": 11.154,
+      "decision_us_p99": 22.448,
+      "max_observed_stall_ms": 1554.2768249288201
+    },
+    "static4096": {
+      "steps": 19370,
+      "switches": 0,
+      "guards": 0,
+      "budget_violations": 0,
+      "preemptions": 0,
+      "decision_us_median": 11.546,
+      "decision_us_p99": 23.587,
+      "max_observed_stall_ms": 1358.7056356482208
+    }
+  },
+  "greedy_output_comparison_to_native": {
+    "static4096": {
+      "matched": 288,
+      "compared": 288
+    },
+    "adaptive": {
+      "matched": 288,
+      "compared": 288
+    },
+    "ppas": {
+      "matched": 288,
+      "compared": 288
+    },
+    "native8192": {
+      "matched": 288,
+      "compared": 288
+    },
+    "no_guard": {
+      "matched": 288,
+      "compared": 288
+    },
+    "static2048": {
+      "matched": 288,
+      "compared": 288
+    },
+    "no_hysteresis": {
+      "matched": 288,
+      "compared": 288
+    }
+  },
+  "multi_token_chunks": 1623
+}

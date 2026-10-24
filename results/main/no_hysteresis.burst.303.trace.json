@@ -1,0 +1,338 @@
+[
+  {
+    "id": "303-0-0",
+    "at": 0.002532597923387767,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "303-0-2",
+    "at": 0.015592447574067522,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "303-0-1",
+    "at": 0.07750430091646911,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "303-0-3",
+    "at": 0.07955239866149368,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "303-0-6",
+    "at": 0.31261600280386753,
+    "input_tokens": 16384,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "303-0-5",
+    "at": 0.3453383925654092,
+    "input_tokens": 16384,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "303-0-7",
+    "at": 0.36317490016383747,
+    "input_tokens": 12288,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "303-0-4",
+    "at": 0.3757394865889132,
+    "input_tokens": 16384,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "303-0-8",
+    "at": 0.6205231538585091,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "303-0-9",
+    "at": 0.6435130052398961,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "303-0-11",
+    "at": 0.6475092958340536,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "303-0-10",
+    "at": 0.6548807430459197,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "303-1-0",
+    "at": 6.0097166882127215,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "303-1-1",
+    "at": 6.03128916033395,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "303-1-2",
+    "at": 6.039430777603333,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "303-1-3",
+    "at": 6.073928227427085,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "303-1-7",
+    "at": 6.311888535712341,
+    "input_tokens": 12288,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "303-1-6",
+    "at": 6.318337363133012,
+    "input_tokens": 16384,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "303-1-5",
+    "at": 6.322414858761809,
+    "input_tokens": 12288,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "303-1-4",
+    "at": 6.365794248950613,
+    "input_tokens": 16384,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "303-1-8",
+    "at": 6.647120704825971,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "303-1-10",
+    "at": 6.65614510610616,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "303-1-9",
+    "at": 6.663650904362063,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "303-1-11",
+    "at": 6.666176335640314,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "303-2-2",
+    "at": 12.020118839457988,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "303-2-1",
+    "at": 12.05225170130767,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "303-2-0",
+    "at": 12.056194756343228,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "303-2-3",
+    "at": 12.076681510358638,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "303-2-7",
+    "at": 12.36296640565235,
+    "input_tokens": 16384,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "303-2-6",
+    "at": 12.36494458853606,
+    "input_tokens": 12288,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "303-2-5",
+    "at": 12.370684032602492,
+    "input_tokens": 16384,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "303-2-4",
+    "at": 12.37923876094999,
+    "input_tokens": 12288,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "303-2-8",
+    "at": 12.605755401041312,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "303-2-11",
+    "at": 12.613488509816179,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "303-2-10",
+    "at": 12.670499848421393,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "303-2-9",
+    "at": 12.67806980067451,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "303-3-2",
+    "at": 18.00984171559861,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "303-3-1",
+    "at": 18.01123510174497,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "303-3-3",
+    "at": 18.05318770408264,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "303-3-0",
+    "at": 18.07806212994654,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "303-3-7",
+    "at": 18.303076759173017,
+    "input_tokens": 12288,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "303-3-5",
+    "at": 18.338788094576365,
+    "input_tokens": 12288,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "303-3-4",
+    "at": 18.358462986295116,
+    "input_tokens": 12288,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "303-3-6",
+    "at": 18.3764254521923,
+    "input_tokens": 16384,
+    "output_tokens": 128,
+    "kind": "long"
+  },
+  {
+    "id": "303-3-10",
+    "at": 18.650068898840125,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "303-3-11",
+    "at": 18.656435380238918,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "303-3-8",
+    "at": 18.674576243261107,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  },
+  {
+    "id": "303-3-9",
+    "at": 18.67703343732175,
+    "input_tokens": 512,
+    "output_tokens": 384,
+    "kind": "short"
+  }
+]

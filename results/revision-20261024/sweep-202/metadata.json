@@ -1,0 +1,77 @@
+{
+  "args": {
+    "model": "/root/autodl-tmp/vllm-budget-lab/models/Qwen3-1.7B",
+    "policies": [
+      "native8192",
+      "static1024",
+      "static2048",
+      "static4096",
+      "adaptive"
+    ],
+    "scenarios": [
+      "burst",
+      "steady"
+    ],
+    "seeds": [
+      202
+    ],
+    "output": "results/revision-20261024/sweep-202",
+    "eager": false,
+    "no_trace": true,
+    "order_seed": 202,
+    "adaptive_example": true
+  },
+  "start_utc": "2026-10-24T06:37:56Z",
+  "gpu": "NVIDIA GeForce RTX 5090, 595.71.05, 32607 MiB",
+  "freeze": "agent-detector==2.0.0\naiohappyeyeballs==2.7.1\naiohttp==3.14.5\naiosignal==1.4.0\nannotated-doc==0.0.5\nannotated-types==0.8.0\nanthropic==1.13.0\nanyio==4.15.1\napache-tvm-ffi==0.1.9\nastor==0.8.1\nattrs==26.1.0\nblake3==1.0.11\ncachetools==7.2.1\ncbor2==6.1.5\ncertifi==2026.7.22\ncffi==2.1.1\ncfgv==3.5.0\ncharset-normalizer==3.5.2\nclick==8.5.0\ncloudpickle==3.1.2\ncompressed-tensors==0.15.0.1\ncryptography==50.0.2\ncuda-bindings==13.4.3\ncuda-core==1.2.1\ncuda-pathfinder==1.8.3\ncuda-python==13.4.1\ncuda-tile==1.6.0\ncuda-toolkit==13.0.2\ndepyf==0.20.0\ndetect-installer==0.2.1\ndill==0.4.1\ndiskcache==5.6.3\ndistlib==0.4.4\ndnspython==2.9.0\ndocstring_parser==0.18.0\neinops==0.8.2\nemail-validator==2.3.0\nfastapi==0.143.0\nfastapi-cli==0.0.32\nfastapi-cloud-cli==0.26.0\nfastar==0.12.0\nfastsafetensors==0.4.0\nfilelock==4.1.1\nflashinfer-cubin==0.6.11.post2\nflashinfer-python==0.6.11.post2\nfrozenlist==1.8.0\nfsspec==2026.9.0\ngguf==0.19.0\ngoogleapis-common-protos==1.75.5\ngrpcio==1.84.0\nh11==0.16.0\nhf-xet==1.7.0\nhttpcore==1.0.9\nhttpcore2==2.13.1\nhttptools==0.9.0\nhttpx==0.28.1\nhttpx2==2.13.1\nhuggingface_hub==0.36.2\nhumming-kernels==0.1.2\nidentify==2.6.20\nidna==3.20\nijson==3.6.0\niniconfig==2.3.1\ninteregular==0.3.3\nJinja2==3.1.6\njiter==0.17.0\njmespath==1.1.0\njsonschema==4.26.0\njsonschema-specifications==2025.9.1\nlark==1.2.2\nllguidance==1.7.6\nllvmlite==0.47.0\nlm-format-enforcer==0.11.3\nloguru==0.7.3\nmarkdown-it-py==4.2.0\nMarkupSafe==3.0.4\nmcp==2.3.0\nmcp-types==2.3.0\nmdurl==0.1.2\nmistral_common==1.12.0\nml_dtypes==0.6.0\nmodel-hosting-container-standards==0.1.16\nmodelscope==1.40.2\nmodelscope-hub==0.4.6\nmpmath==1.3.0\nmsgspec==0.22.0\nmultidict==7.1.0\nnetworkx==3.7\nninja==1.13.2\nnodeenv==1.11.0\nnumba==0.65.0\nnumpy==2.3.5\nnvidia-cublas==13.1.0.3\nnvidia-cuda-cccl==13.3.4.3.1\nnvidia-cuda-crt==13.4.92\nnvidia-cuda-cupti==13.0.85\nnvidia-cuda-nvcc==13.4.92\nnvidia-cuda-nvrtc==13.0.88\nnvidia-cuda-runtime==13.0.96\nnvidia-cudnn-cu13==9.19.0.56\nnvidia-cudnn-frontend==1.18.0\nnvidia-cufft==12.0.0.61\nnvidia-cufile==1.15.1.6\nnvidia-curand==10.4.0.35\nnvidia-cusolver==12.0.4.66\nnvidia-cusparse==12.6.3.3\nnvidia-cusparselt-cu13==0.8.0\nnvidia-cutlass-dsl==4.5.2\nnvidia-cutlass-dsl-libs-base==4.5.2\nnvidia-cutlass-dsl-libs-cu13==4.5.2\nnvidia-ml-py==13.615.71\nnvidia-nccl-cu13==2.28.9\nnvidia-nvjitlink==13.0.88\nnvidia-nvshmem-cu13==3.4.5\nnvidia-nvtx==13.0.85\nnvidia-nvvm==13.4.92\nopenai==3.31.0\nopenai-harmony==0.0.8\nopencv-python-headless==5.0.0.93\nopentelemetry-api==1.45.1\nopentelemetry-exporter-http-transport==0.66b1\nopentelemetry-exporter-otlp==1.45.1\nopentelemetry-exporter-otlp-common==0.66b1\nopentelemetry-exporter-otlp-proto-common==1.45.1\nopentelemetry-exporter-otlp-proto-grpc==1.45.1\nopentelemetry-exporter-otlp-proto-http==1.45.1\nopentelemetry-proto==1.45.1\nopentelemetry-sdk==1.45.1\nopentelemetry-semantic-conventions==0.66b1\nopentelemetry-semantic-conventions-ai==0.5.1\noutlines_core==0.2.14\npackaging==26.3\npartial-json-parser==0.2.1.1.post7\npillow==12.3.0\nplatformdirs==4.13.5\npluggy==1.6.0\npre_commit==4.7.0\nprometheus-fastapi-instrumentator==8.1.0\nprometheus_client==0.26.0\npropcache==0.5.4\nprotobuf==7.36.2\npsutil==7.2.2\npy-cpuinfo==9.0.0\npybase64==1.5.1\npycountry==26.2.16\npycparser==3.11\npydantic==2.14.1\npydantic-extra-types==2.11.1\npydantic-settings==2.15.0\npydantic_core==2.50.1\npyelftools==0.33\nPygments==2.21.0\nPyJWT==2.15.1\npytest==9.1.1\npython-discovery==1.6.4\npython-dotenv==1.2.4\npython-json-logger==4.2.0\npython-multipart==0.0.32\nPyYAML==6.0.3\npyzmq==27.2.0\nquack-kernels==0.5.0\nreferencing==0.37.0\nregex==2026.9.29\nrequests==2.34.2\nrich==15.0.0\nrich-toolkit==0.20.6\nrignore==0.8.1\nrpds-py==2026.9.1\nruff==0.17.2\nsafetensors==0.8.0\nscipy==1.18.1\nsentencepiece==0.2.2\nsentry-sdk==2.72.0\nsetproctitle==1.3.8\nsetuptools==80.10.2\nshellingham==1.5.4\nsix==1.17.0\nsniffio==1.3.1\nsse-starlette==3.5.0\nstarlette==1.8.0\nsupervisor==4.3.0\nsympy==1.14.0\ntabulate==0.10.0\ntiktoken==0.14.0\ntilelang==0.1.9\ntokenizers==0.22.2\ntokenspeed-mla==0.1.2\ntokenspeed-triton==3.9.10.post20261008\ntorch==2.11.0\ntorch_c_dlpack_ext==0.1.5\ntorchaudio==2.11.0\ntorchvision==0.26.0\ntqdm==4.70.1\ntransformers==4.57.6\ntriton==3.6.0\ntruststore==0.10.5\ntyper==0.27.3\ntyping-inspection==0.4.4\ntyping_extensions==4.16.0\nurllib3==2.8.0\nuv==0.13.0\nuvicorn==0.54.0\nuvloop==0.23.0\nvirtualenv==21.14.13\nvllm==0.22.1\n# Editable install with no version control (vllm-adaptive-budget-lab==0.1.0)\n-e /root/autodl-tmp/vllm-budget-lab\nwatchfiles==1.3.0\nwebsockets==17.2\nxgrammar==0.2.5.post1\nyarl==1.25.1\nz3-solver==4.15.4.0\n",
+  "source_sha256": {
+    "src/adaptive_budget/__init__.py": "20fbd798a95d64a954d7242e705e262264ec1ef7f440d4f742d406343ecb58a1",
+    "src/adaptive_budget/controller.py": "9a4eeedbe4e200ed4b4bdb3b849083ba18052025f25c4ab3b45144c5be53c617",
+    "src/adaptive_budget/scheduler.py": "38c4e887a6ca32bc5f18d3f97ad214f195c81b20bef945528ddeefff06f8c9fb",
+    "benchmarks/analyze.py": "dcc770c930e15b35cb8da4f78bab1f79b979cdca3960db59a86fa5a6e513f69e",
+    "benchmarks/inspect_evidence.py": "0e86110567b353593c1691568266970de58f74a1be6c1a130ed3882a4ad0d0fa",
+    "benchmarks/package_evidence.py": "e576e5aee6b8eba0d1a5a2231d0ec56c887933fed86a44f88c6a2ee745a1b1a1",
+    "benchmarks/run_sweep.py": "9e54fb0974bd4969372fe36be6000a82ec9377b866bf73fb162a1fd0095d3336",
+    "benchmarks/validate_generation.py": "5295c6d07169ed6f9a340c4f648be9c111f39f5daecd2df03547c24ac327a451",
+    "tests/test_controller.py": "f06a278b3457041bce5da5ca101e5339bf0baa6d79a3d9bbad9328e0ee3993b7",
+    "tests/test_scheduler.py": "01f03450aa79bdcf4a5c7b98a5c5ee4b6d65382051e49566f96b98c405594921",
+    "upstream_payload/examples/features/adaptive_budget/scheduler.py": "1ff036479631c4d7661b2fa97d07daec3ed03303c80709655ef95d493f8fa743"
+  },
+  "model_config": {
+    "architectures": [
+      "Qwen3ForCausalLM"
+    ],
+    "attention_bias": false,
+    "attention_dropout": 0.0,
+    "bos_token_id": 151643,
+    "eos_token_id": 151645,
+    "head_dim": 128,
+    "hidden_act": "silu",
+    "hidden_size": 2048,
+    "initializer_range": 0.02,
+    "intermediate_size": 6144,
+    "max_position_embeddings": 40960,
+    "max_window_layers": 28,
+    "model_type": "qwen3",
+    "num_attention_heads": 16,
+    "num_hidden_layers": 28,
+    "num_key_value_heads": 8,
+    "rms_norm_eps": 1e-06,
+    "rope_scaling": null,
+    "rope_theta": 1000000,
+    "sliding_window": null,
+    "tie_word_embeddings": true,
+    "torch_dtype": "bfloat16",
+    "transformers_version": "4.51.0",
+    "use_cache": true,
+    "use_sliding_window": false,
+    "vocab_size": 151936
+  },
+  "policy_order": [
+    "static2048",
+    "native8192",
+    "static1024",
+    "adaptive",
+    "static4096"
+  ]
+}

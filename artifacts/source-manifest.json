@@ -1,0 +1,16 @@
+{
+  "download_model.py": "8677ee3a5d30a7b1deef8bbb69a8de8160e35557f5cc2d5cc3b2833004a48f97",
+  "pyproject.toml": "16ef3ad6d7094d13edff853d885b7435912537ce1e5a6ad0d028b650d8fd7502",
+  "README.md": "58206ac72622cc2686c9c5b0fd88506a302ba025faf77fe73a70e7da92bee9e1",
+  "REPORT.md": "a9b9b091fec1c496872b076769af79769c0114abc6b9c43692028212f7703861",
+  "requirements-tested.txt": "933617105ae23c439179bb64c7b40f604ff6ad2130a4db917f3d5da40906c5e8",
+  "benchmarks/analyze.py": "dcc770c930e15b35cb8da4f78bab1f79b979cdca3960db59a86fa5a6e513f69e",
+  "benchmarks/inspect_evidence.py": "0e86110567b353593c1691568266970de58f74a1be6c1a130ed3882a4ad0d0fa",
+  "benchmarks/package_evidence.py": "e576e5aee6b8eba0d1a5a2231d0ec56c887933fed86a44f88c6a2ee745a1b1a1",
+  "benchmarks/run_sweep.py": "b0df836d88b4ca1e3deafc17c5fb55eafa0d89a25b4323a26eecb5a11e27b55d",
+  "tests/test_controller.py": "709666d6e561ee539f889011750bdc78188f69c8f1fcc1d4c49b41a4ba29068d",
+  "tests/test_scheduler.py": "be0a619b60f51d4d31f47075e7995181c2741b2ee6fa23e1ccf73b7dab2dfe3f",
+  "src/adaptive_budget/controller.py": "03de4761745bbe3431d9e8ee7cabb69658e9c3f5513ebbeabc89cf362b3db9d1",
+  "src/adaptive_budget/scheduler.py": "fb608e68bd2bf5ff9e10470c647c942f3d88a61c62a44952bd6b160bb6c56f53",
+  "src/adaptive_budget/__init__.py": "2b7f2ff350986e1d74ccb464bdba183c2b06951867e202ba2a311e7ccaef8e87"
+}

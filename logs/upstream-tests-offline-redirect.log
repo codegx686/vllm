@@ -1,0 +1,697 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.1.1, pluggy-1.7.0 -- /root/autodl-tmp/vllm-budget-upstream/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /root/autodl-tmp/vllm-budget-upstream
+configfile: pyproject.toml
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 17 items / 1 deselected / 16 selected
+
+tests/plugins_tests/test_scheduler_plugins.py::test_adaptive_budget_rejects_invalid_config[config0] PASSED [  6%]
+tests/plugins_tests/test_scheduler_plugins.py::test_adaptive_budget_rejects_invalid_config[config1] PASSED [ 12%]
+tests/plugins_tests/test_scheduler_plugins.py::test_adaptive_budget_rejects_invalid_config[config2] PASSED [ 18%]
+tests/plugins_tests/test_scheduler_plugins.py::test_adaptive_budget_rejects_invalid_config[config3] PASSED [ 25%]
+tests/plugins_tests/test_scheduler_plugins.py::test_adaptive_budget_rejects_invalid_config[config4] PASSED [ 31%]
+tests/plugins_tests/test_scheduler_plugins.py::test_adaptive_budget_rejects_invalid_config[config5] PASSED [ 37%]
+tests/plugins_tests/test_scheduler_plugins.py::test_adaptive_budget_rejects_invalid_config[config6] PASSED [ 43%]
+tests/plugins_tests/test_scheduler_plugins.py::test_adaptive_budget_rejects_invalid_config[config7] PASSED [ 50%]
+tests/plugins_tests/test_scheduler_plugins.py::test_adaptive_budget_rejects_invalid_config[config8] PASSED [ 56%]
+tests/plugins_tests/test_scheduler_plugins.py::test_adaptive_budget_rejects_invalid_config[config9] PASSED [ 62%]
+tests/plugins_tests/test_scheduler_plugins.py::test_adaptive_budget_dwell_and_unmixed_release PASSED [ 68%]
+tests/plugins_tests/test_scheduler_plugins.py::test_adaptive_budget_guard_is_rate_limited PASSED [ 75%]
+tests/plugins_tests/test_scheduler_plugins.py::test_adaptive_budget_preserves_capacity_and_request_lifecycle PASSED [ 81%]
+tests/plugins_tests/test_scheduler_plugins.py::test_adaptive_budget_rejects_capacity_overflow PASSED [ 87%]
+tests/plugins_tests/test_scheduler_plugins.py::test_adaptive_budget_generation[False] FAILED [ 93%]
+tests/plugins_tests/test_scheduler_plugins.py::test_adaptive_budget_generation[True] FAILED [100%]
+
+=================================== FAILURES ===================================
+____________________ test_adaptive_budget_generation[False] ____________________
+
+vllm_runner = <class 'tests.conftest.VllmRunner'>, enable_prefix_caching = False
+
+    @pytest.mark.parametrize("enable_prefix_caching", [False, True])
+    def test_adaptive_budget_generation(vllm_runner, enable_prefix_caching):
+        """Compare native generation across different mixed prefill/decode shapes."""
+        params = SamplingParams(temperature=0, max_tokens=64, ignore_eos=True, logprobs=5)
+        outputs = []
+        for scheduler_cls in (Scheduler, AdaptiveBudgetScheduler):
+>           with vllm_runner(
+                "Qwen/Qwen3-1.7B",
+                dtype="bfloat16",
+                max_model_len=4096,
+                max_num_batched_tokens=512,
+                max_num_seqs=4,
+                enable_chunked_prefill=True,
+                async_scheduling=False,
+                enable_prefix_caching=enable_prefix_caching,
+                enforce_eager=True,
+                scheduler_cls=scheduler_cls,
+                additional_config={
+                    "adaptive_budget": {
+                        "high_budget": 512,
+                        "low_budget": 128,
+                        "guard_budget": 256,
+                        "enter_prefills": 1,
+                    }
+                },
+            ) as runner:
+
+tests/plugins_tests/test_scheduler_plugins.py:141: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/conftest.py:1042: in __init__
+    self.llm = LLM(
+vllm/entrypoints/llm.py:295: in __init__
+    engine_args = EngineArgs(
+<string>:262: in __init__
+    ???
+vllm/engine/arg_utils.py:939: in __post_init__
+    self.model = get_model_path(self.model, self.revision)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+vllm/transformers_utils/repo_utils.py:301: in get_model_path
+    return hf_api().snapshot_download(
+.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py:89: in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/huggingface_hub/hf_api.py:6647: in snapshot_download
+    return snapshot_download(
+.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py:89: in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/huggingface_hub/utils/_http.py:276: in _inner
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+repo_id = 'Qwen/Qwen3-1.7B', repo_type = 'model', revision = 'main'
+cache_dir = '/root/.cache/huggingface/hub', local_dir = None
+library_name = 'vllm', library_version = '0.1.dev1+g49d634bd6.d20261024'
+user_agent = None, etag_timeout = 10, force_download = False, token = None
+local_files_only = True, allow_patterns = None, ignore_patterns = '*'
+max_workers = 8, tqdm_class = None, headers = None
+endpoint = 'https://huggingface.co', dry_run = False
+
+    @validate_hf_hub_args
+    @flag_as_download_call
+    def snapshot_download(
+        repo_id: str,
+        *,
+        repo_type: str | None = None,
+        revision: str | None = None,
+        cache_dir: str | Path | None = None,
+        local_dir: str | Path | None = None,
+        library_name: str | None = None,
+        library_version: str | None = None,
+        user_agent: dict | str | None = None,
+        etag_timeout: float = constants.DEFAULT_ETAG_TIMEOUT,
+        force_download: bool = False,
+        token: bool | str | None = None,
+        local_files_only: bool = False,
+        allow_patterns: list[str] | str | None = None,
+        ignore_patterns: list[str] | str | None = None,
+        max_workers: int = 8,
+        tqdm_class: type[base_tqdm] | None = None,
+        headers: dict[str, str] | None = None,
+        endpoint: str | None = None,
+        dry_run: bool = False,
+    ) -> str | list[DryRunFileInfo]:
+        """Download repo files.
+    
+        Download a whole snapshot of a repo's files at the specified revision. This is useful when you want all files from
+        a repo because you don't know which ones you will need _a priori_. All files are nested in a folder to keep their
+        path and filename relative to that folder. You can also filter which files to download by using `allow_patterns`
+        and `ignore_patterns`.
+    
+        If `local_dir` is provided, the file structure from the repo will be replicated in this location. When using this
+        option, the `cache_dir` will not be used, and a `.cache/huggingface/` folder will be created at the root of `local_dir`
+        to store some metadata related to the downloaded files. While this mechanism is not as robust as the main
+        cache system, it's optimized for regularly pulling the latest version of a repository.
+    
+        An alternative would be to clone the repo, but this requires git and git-lfs to be installed and properly
+        configured. It is also not possible to filter which files to download when cloning a repository using git.
+    
+        Args:
+            repo_id (`str`):
+                A user or an organization name and a repo name separated by a `/`.
+            repo_type (`str`, *optional*):
+                Set to `"dataset"`, `"space"` or `"kernel"` if downloading from a dataset, space or kernel repo,
+                `None` or `"model"` if downloading from a model. Default is `None`.
+            revision (`str`, *optional*):
+                An optional Git revision id, which can be a branch name, a tag, or a
+                commit hash.
+            cache_dir (`str`, `Path`, *optional*):
+                Path to the folder where cached files are stored.
+            local_dir (`str` or `Path`, *optional*):
+                If provided, the downloaded files will be placed under this directory.
+            library_name (`str`, *optional*):
+                The name of the library to which the object corresponds.
+            library_version (`str`, *optional*):
+                The version of the library.
+            user_agent (`str`, `dict`, *optional*):
+                The user-agent info in the form of a dictionary or a string.
+            etag_timeout (`float`, *optional*, defaults to `10`):
+                When fetching ETag, how many seconds to wait for the server to send
+                data before giving up, which is passed to `httpx2.request`.
+            force_download (`bool`, *optional*, defaults to `False`):
+                Whether the file should be downloaded even if it already exists in the local cache.
+            token (`str`, `bool`, *optional*):
+                A token to be used for the download.
+                    - If `True`, the token is read from the HuggingFace config
+                      folder.
+                    - If a string, it's used as the authentication token.
+            headers (`dict`, *optional*):
+                Additional headers to include in the request. Those headers take precedence over the others.
+            endpoint (`str`, *optional*):
+                The Hub endpoint to send the request to. Defaults to the value of `HF_ENDPOINT`.
+            local_files_only (`bool`, *optional*, defaults to `False`):
+                If `True`, do not download any files even if they are not in `cache_dir` or `local_dir`.
+            allow_patterns (`list[str]` or `str`, *optional*):
+                If provided, only files matching at least one pattern are downloaded.
+            ignore_patterns (`list[str]` or `str`, *optional*):
+                If provided, files matching any of the patterns are not downloaded.
+            max_workers (`int`, *optional*):
+                Number of concurrent threads to download files (1 thread = 1 file download).
+                Defaults to 8.
+            tqdm_class (`tqdm`, *optional*):
+                If provided, overwrites the default behavior for the progress bar. Passed
+                argument must inherit from `tqdm.auto.tqdm` or at least mimic its behavior.
+                Note that the `tqdm_class` is not passed to each individual download.
+                Defaults to the custom HF progress bar that can be disabled by setting
+                `HF_HUB_DISABLE_PROGRESS_BARS` environment variable.
+            dry_run (`bool`, *optional*, defaults to `False`):
+                If `True`, perform a dry run without actually downloading the files. Returns a list of
+                [`DryRunFileInfo`] objects containing information about what would be downloaded.
+    
+        Returns:
+            `str` or list of [`DryRunFileInfo`]:
+                - If `dry_run=False`: Local snapshot path.
+                - If `dry_run=True`: A list of [`DryRunFileInfo`] objects containing download information.
+    
+        Raises:
+            [`~utils.RepositoryNotFoundError`]
+                If the repository to download from cannot be found. This may be because it doesn't exist
+                or because it is set to `private` and you do not have access.
+            [`~utils.RevisionNotFoundError`]
+                If the revision to download from cannot be found.
+            [`~errors.IncompleteSnapshotError`]
+                If the Hub cannot be reached (offline, connection issue, or `local_files_only=True`) and the
+                cached snapshot is missing some of the requested files.
+            [`EnvironmentError`](https://docs.python.org/3/library/exceptions.html#EnvironmentError)
+                If `token=True` and the token cannot be found.
+            [`OSError`](https://docs.python.org/3/library/exceptions.html#OSError) if
+                ETag cannot be determined.
+            [`ValueError`](https://docs.python.org/3/library/exceptions.html#ValueError)
+                If some parameter value is invalid.
+        """
+        if cache_dir is None:
+            cache_dir = constants.HF_HUB_CACHE
+        cache_dir = str(Path(cache_dir).expanduser().resolve())
+        if local_dir is not None:
+            local_dir = str(Path(local_dir).expanduser().resolve())
+        if revision is None:
+            revision = constants.DEFAULT_REVISION
+    
+        if repo_type is None:
+            repo_type = "model"
+        if repo_type not in constants.REPO_TYPES_WITH_KERNEL:
+            raise ValueError(
+                f"Invalid repo type: {repo_type}. Accepted repo types are: {str(constants.REPO_TYPES_WITH_KERNEL)}"
+            )
+    
+        storage_folder = os.path.join(cache_dir, repo_folder_name(repo_id=repo_id, repo_type=repo_type))
+    
+        # Folder under which the per-commit tree listing (`trees/<commit_hash>.json`) is cached on disk.
+        tree_cache_folder = tree_cache_folder_for_local_dir(local_dir) if local_dir is not None else storage_folder
+    
+        api = HfApi(
+            library_name=library_name,
+            library_version=library_version,
+            user_agent=user_agent,
+            endpoint=endpoint,
+            headers=headers,
+            token=token,
+        )
+    
+        # The revision is already a commit hash if:
+        # - it's a `ResolvedRevision` (already resolved, see [`HfApi.resolve_revision`])
+        # - it's a commit hash, which is immutable
+        # => in both cases, there is nothing to resolve and the `repo_info` call can be skipped.
+        commit_hash: str | None = None
+        if isinstance(revision, ResolvedRevision):
+            commit_hash = revision.resolved
+        elif REGEX_COMMIT_HASH.fullmatch(revision):
+            commit_hash = revision
+    
+        tree_entries: dict[str, TreeCacheEntry] | None = None
+        api_call_error: Exception | None = None
+        if not local_files_only:
+            # try/except logic to handle different errors => taken from `hf_hub_download`
+            try:
+                if commit_hash is None:
+                    # if we have internet connection we want to list files to download
+                    repo_info = api.repo_info(repo_id=repo_id, repo_type=repo_type, revision=revision)
+                    assert repo_info.sha is not None, "Repo info returned from server must have a revision sha."
+                    commit_hash = repo_info.sha
+                tree_entries = read_tree_cache(tree_cache_folder, commit_hash)
+                if tree_entries is None:
+                    tree_entries = {
+                        f.path: TreeCacheEntry(
+                            size=f.size,
+                            blob_id=f.blob_id,
+                            lfs_sha256=f.lfs.sha256 if f.lfs is not None else None,
+                            lfs_size=f.lfs.size if f.lfs is not None else None,
+                            xet_hash=f.xet_hash,
+                        )
+                        for f in api.list_repo_tree(
+                            repo_id=repo_id, recursive=True, revision=commit_hash, repo_type=repo_type
+                        )
+                        if isinstance(f, RepoFile)
+                    }
+                    if not dry_run:
+                        write_tree_cache(tree_cache_folder, commit_hash, tree_entries)
+            except httpx2.ProxyError:
+                # Actually raise on proxy error
+                raise
+            except (httpx2.ConnectError, httpx2.TimeoutException, OfflineModeIsEnabled) as error:
+                # Internet connection is down
+                # => will try to use local files only
+                api_call_error = error
+                pass
+            except RevisionNotFoundError:
+                # The repo was found but the revision doesn't exist on the Hub (never existed or got deleted)
+                raise
+            except HfHubHTTPError as error:
+                # Multiple reasons for an http error:
+                # - Repository is private and invalid/missing token sent
+                # - Repository is gated and invalid/missing token sent
+                # - Hub is down (error 500 or 504)
+                # => let's switch to 'local_files_only=True' to check if the files are already cached.
+                #    (if it's not the case, the error will be re-raised)
+                api_call_error = error
+                pass
+    
+        # At this stage, if the tree listing is unknown it means either:
+        # - internet connection is down
+        # - internet connection is deactivated (local_files_only=True or HF_HUB_OFFLINE=True)
+        # - repo is private/gated and invalid/missing token sent
+        # - Hub is down
+        # => let's look if we can find the appropriate folder in the cache:
+        #    - if the specified revision is a commit hash, look inside "snapshots".
+        #    - f the specified revision is a branch or tag, look inside "refs".
+        # => if local_dir is not None, we will return the path to the local folder if it exists.
+        if tree_entries is None or local_files_only:
+            if dry_run:
+                raise DryRunError(
+                    "Dry run cannot be performed as the repository cannot be accessed. Please check your internet connection or authentication token."
+                ) from api_call_error
+    
+            # Try to get which commit hash corresponds to the specified revision
+            if commit_hash is None:
+                ref_path = os.path.join(storage_folder, "refs", revision)
+                if os.path.exists(ref_path):
+                    # retrieve commit_hash from refs file
+                    with open(ref_path) as f:
+                        commit_hash = f.read()
+    
+            # Try to locate snapshot folder for this commit hash
+            if commit_hash is not None and local_dir is None:
+                snapshot_folder = os.path.join(storage_folder, "snapshots", commit_hash)
+                if os.path.exists(snapshot_folder):
+                    # The folder exists, but may be partial (e.g. after an interrupted download): only return it
+                    # if the cached tree listing confirms it is complete.
+                    _raise_if_incomplete_snapshot(
+                        tree_cache_folder=tree_cache_folder,
+                        commit_hash=commit_hash,
+                        base_dir=snapshot_folder,
+                        allow_patterns=allow_patterns,
+                        ignore_patterns=ignore_patterns,
+                        repo_id=repo_id,
+                        revision=revision,
+                        api_call_error=api_call_error,
+                    )
+                    return snapshot_folder
+    
+            # If local_dir is not None, return it if it exists and is complete
+            if local_dir is not None:
+                local_dir = Path(local_dir)
+                if local_dir.is_dir() and any(local_dir.iterdir()):
+                    if commit_hash is not None:
+                        _raise_if_incomplete_snapshot(
+                            tree_cache_folder=tree_cache_folder,
+                            commit_hash=commit_hash,
+                            base_dir=str(local_dir),
+                            allow_patterns=allow_patterns,
+                            ignore_patterns=ignore_patterns,
+                            repo_id=repo_id,
+                            revision=revision,
+                            api_call_error=api_call_error,
+                        )
+                    logger.warning(
+                        f"Returning existing local_dir `{local_dir}` as remote repo cannot be accessed in `snapshot_download` ({api_call_error})."
+                    )
+                    return str(local_dir.resolve())
+            # If we couldn't find the appropriate folder on disk, raise an error.
+            if local_files_only:
+>               raise LocalEntryNotFoundError(
+                    "Cannot find an appropriate cached snapshot folder for the specified revision on the local disk and "
+                    "outgoing traffic has been disabled. To enable repo look-ups and downloads online, pass "
+                    "'local_files_only=False' as input."
+E                   huggingface_hub.errors.LocalEntryNotFoundError: Cannot find an appropriate cached snapshot folder for the specified revision on the local disk and outgoing traffic has been disabled. To enable repo look-ups and downloads online, pass 'local_files_only=False' as input.
+
+.venv/lib/python3.12/site-packages/huggingface_hub/_snapshot_download.py:382: LocalEntryNotFoundError
+____________________ test_adaptive_budget_generation[True] _____________________
+
+vllm_runner = <class 'tests.conftest.VllmRunner'>, enable_prefix_caching = True
+
+    @pytest.mark.parametrize("enable_prefix_caching", [False, True])
+    def test_adaptive_budget_generation(vllm_runner, enable_prefix_caching):
+        """Compare native generation across different mixed prefill/decode shapes."""
+        params = SamplingParams(temperature=0, max_tokens=64, ignore_eos=True, logprobs=5)
+        outputs = []
+        for scheduler_cls in (Scheduler, AdaptiveBudgetScheduler):
+>           with vllm_runner(
+                "Qwen/Qwen3-1.7B",
+                dtype="bfloat16",
+                max_model_len=4096,
+                max_num_batched_tokens=512,
+                max_num_seqs=4,
+                enable_chunked_prefill=True,
+                async_scheduling=False,
+                enable_prefix_caching=enable_prefix_caching,
+                enforce_eager=True,
+                scheduler_cls=scheduler_cls,
+                additional_config={
+                    "adaptive_budget": {
+                        "high_budget": 512,
+                        "low_budget": 128,
+                        "guard_budget": 256,
+                        "enter_prefills": 1,
+                    }
+                },
+            ) as runner:
+
+tests/plugins_tests/test_scheduler_plugins.py:141: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/conftest.py:1042: in __init__
+    self.llm = LLM(
+vllm/entrypoints/llm.py:295: in __init__
+    engine_args = EngineArgs(
+<string>:262: in __init__
+    ???
+vllm/engine/arg_utils.py:939: in __post_init__
+    self.model = get_model_path(self.model, self.revision)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+vllm/transformers_utils/repo_utils.py:301: in get_model_path
+    return hf_api().snapshot_download(
+.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py:89: in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/huggingface_hub/hf_api.py:6647: in snapshot_download
+    return snapshot_download(
+.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py:89: in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/huggingface_hub/utils/_http.py:276: in _inner
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+repo_id = 'Qwen/Qwen3-1.7B', repo_type = 'model', revision = 'main'
+cache_dir = '/root/.cache/huggingface/hub', local_dir = None
+library_name = 'vllm', library_version = '0.1.dev1+g49d634bd6.d20261024'
+user_agent = None, etag_timeout = 10, force_download = False, token = None
+local_files_only = True, allow_patterns = None, ignore_patterns = '*'
+max_workers = 8, tqdm_class = None, headers = None
+endpoint = 'https://huggingface.co', dry_run = False
+
+    @validate_hf_hub_args
+    @flag_as_download_call
+    def snapshot_download(
+        repo_id: str,
+        *,
+        repo_type: str | None = None,
+        revision: str | None = None,
+        cache_dir: str | Path | None = None,
+        local_dir: str | Path | None = None,
+        library_name: str | None = None,
+        library_version: str | None = None,
+        user_agent: dict | str | None = None,
+        etag_timeout: float = constants.DEFAULT_ETAG_TIMEOUT,
+        force_download: bool = False,
+        token: bool | str | None = None,
+        local_files_only: bool = False,
+        allow_patterns: list[str] | str | None = None,
+        ignore_patterns: list[str] | str | None = None,
+        max_workers: int = 8,
+        tqdm_class: type[base_tqdm] | None = None,
+        headers: dict[str, str] | None = None,
+        endpoint: str | None = None,
+        dry_run: bool = False,
+    ) -> str | list[DryRunFileInfo]:
+        """Download repo files.
+    
+        Download a whole snapshot of a repo's files at the specified revision. This is useful when you want all files from
+        a repo because you don't know which ones you will need _a priori_. All files are nested in a folder to keep their
+        path and filename relative to that folder. You can also filter which files to download by using `allow_patterns`
+        and `ignore_patterns`.
+    
+        If `local_dir` is provided, the file structure from the repo will be replicated in this location. When using this
+        option, the `cache_dir` will not be used, and a `.cache/huggingface/` folder will be created at the root of `local_dir`
+        to store some metadata related to the downloaded files. While this mechanism is not as robust as the main
+        cache system, it's optimized for regularly pulling the latest version of a repository.
+    
+        An alternative would be to clone the repo, but this requires git and git-lfs to be installed and properly
+        configured. It is also not possible to filter which files to download when cloning a repository using git.
+    
+        Args:
+            repo_id (`str`):
+                A user or an organization name and a repo name separated by a `/`.
+            repo_type (`str`, *optional*):
+                Set to `"dataset"`, `"space"` or `"kernel"` if downloading from a dataset, space or kernel repo,
+                `None` or `"model"` if downloading from a model. Default is `None`.
+            revision (`str`, *optional*):
+                An optional Git revision id, which can be a branch name, a tag, or a
+                commit hash.
+            cache_dir (`str`, `Path`, *optional*):
+                Path to the folder where cached files are stored.
+            local_dir (`str` or `Path`, *optional*):
+                If provided, the downloaded files will be placed under this directory.
+            library_name (`str`, *optional*):
+                The name of the library to which the object corresponds.
+            library_version (`str`, *optional*):
+                The version of the library.
+            user_agent (`str`, `dict`, *optional*):
+                The user-agent info in the form of a dictionary or a string.
+            etag_timeout (`float`, *optional*, defaults to `10`):
+                When fetching ETag, how many seconds to wait for the server to send
+                data before giving up, which is passed to `httpx2.request`.
+            force_download (`bool`, *optional*, defaults to `False`):
+                Whether the file should be downloaded even if it already exists in the local cache.
+            token (`str`, `bool`, *optional*):
+                A token to be used for the download.
+                    - If `True`, the token is read from the HuggingFace config
+                      folder.
+                    - If a string, it's used as the authentication token.
+            headers (`dict`, *optional*):
+                Additional headers to include in the request. Those headers take precedence over the others.
+            endpoint (`str`, *optional*):
+                The Hub endpoint to send the request to. Defaults to the value of `HF_ENDPOINT`.
+            local_files_only (`bool`, *optional*, defaults to `False`):
+                If `True`, do not download any files even if they are not in `cache_dir` or `local_dir`.
+            allow_patterns (`list[str]` or `str`, *optional*):
+                If provided, only files matching at least one pattern are downloaded.
+            ignore_patterns (`list[str]` or `str`, *optional*):
+                If provided, files matching any of the patterns are not downloaded.
+            max_workers (`int`, *optional*):
+                Number of concurrent threads to download files (1 thread = 1 file download).
+                Defaults to 8.
+            tqdm_class (`tqdm`, *optional*):
+                If provided, overwrites the default behavior for the progress bar. Passed
+                argument must inherit from `tqdm.auto.tqdm` or at least mimic its behavior.
+                Note that the `tqdm_class` is not passed to each individual download.
+                Defaults to the custom HF progress bar that can be disabled by setting
+                `HF_HUB_DISABLE_PROGRESS_BARS` environment variable.
+            dry_run (`bool`, *optional*, defaults to `False`):
+                If `True`, perform a dry run without actually downloading the files. Returns a list of
+                [`DryRunFileInfo`] objects containing information about what would be downloaded.
+    
+        Returns:
+            `str` or list of [`DryRunFileInfo`]:
+                - If `dry_run=False`: Local snapshot path.
+                - If `dry_run=True`: A list of [`DryRunFileInfo`] objects containing download information.
+    
+        Raises:
+            [`~utils.RepositoryNotFoundError`]
+                If the repository to download from cannot be found. This may be because it doesn't exist
+                or because it is set to `private` and you do not have access.
+            [`~utils.RevisionNotFoundError`]
+                If the revision to download from cannot be found.
+            [`~errors.IncompleteSnapshotError`]
+                If the Hub cannot be reached (offline, connection issue, or `local_files_only=True`) and the
+                cached snapshot is missing some of the requested files.
+            [`EnvironmentError`](https://docs.python.org/3/library/exceptions.html#EnvironmentError)
+                If `token=True` and the token cannot be found.
+            [`OSError`](https://docs.python.org/3/library/exceptions.html#OSError) if
+                ETag cannot be determined.
+            [`ValueError`](https://docs.python.org/3/library/exceptions.html#ValueError)
+                If some parameter value is invalid.
+        """
+        if cache_dir is None:
+            cache_dir = constants.HF_HUB_CACHE
+        cache_dir = str(Path(cache_dir).expanduser().resolve())
+        if local_dir is not None:
+            local_dir = str(Path(local_dir).expanduser().resolve())
+        if revision is None:
+            revision = constants.DEFAULT_REVISION
+    
+        if repo_type is None:
+            repo_type = "model"
+        if repo_type not in constants.REPO_TYPES_WITH_KERNEL:
+            raise ValueError(
+                f"Invalid repo type: {repo_type}. Accepted repo types are: {str(constants.REPO_TYPES_WITH_KERNEL)}"
+            )
+    
+        storage_folder = os.path.join(cache_dir, repo_folder_name(repo_id=repo_id, repo_type=repo_type))
+    
+        # Folder under which the per-commit tree listing (`trees/<commit_hash>.json`) is cached on disk.
+        tree_cache_folder = tree_cache_folder_for_local_dir(local_dir) if local_dir is not None else storage_folder
+    
+        api = HfApi(
+            library_name=library_name,
+            library_version=library_version,
+            user_agent=user_agent,
+            endpoint=endpoint,
+            headers=headers,
+            token=token,
+        )
+    
+        # The revision is already a commit hash if:
+        # - it's a `ResolvedRevision` (already resolved, see [`HfApi.resolve_revision`])
+        # - it's a commit hash, which is immutable
+        # => in both cases, there is nothing to resolve and the `repo_info` call can be skipped.
+        commit_hash: str | None = None
+        if isinstance(revision, ResolvedRevision):
+            commit_hash = revision.resolved
+        elif REGEX_COMMIT_HASH.fullmatch(revision):
+            commit_hash = revision
+    
+        tree_entries: dict[str, TreeCacheEntry] | None = None
+        api_call_error: Exception | None = None
+        if not local_files_only:
+            # try/except logic to handle different errors => taken from `hf_hub_download`
+            try:
+                if commit_hash is None:
+                    # if we have internet connection we want to list files to download
+                    repo_info = api.repo_info(repo_id=repo_id, repo_type=repo_type, revision=revision)
+                    assert repo_info.sha is not None, "Repo info returned from server must have a revision sha."
+                    commit_hash = repo_info.sha
+                tree_entries = read_tree_cache(tree_cache_folder, commit_hash)
+                if tree_entries is None:
+                    tree_entries = {
+                        f.path: TreeCacheEntry(
+                            size=f.size,
+                            blob_id=f.blob_id,
+                            lfs_sha256=f.lfs.sha256 if f.lfs is not None else None,
+                            lfs_size=f.lfs.size if f.lfs is not None else None,
+                            xet_hash=f.xet_hash,
+                        )
+                        for f in api.list_repo_tree(
+                            repo_id=repo_id, recursive=True, revision=commit_hash, repo_type=repo_type
+                        )
+                        if isinstance(f, RepoFile)
+                    }
+                    if not dry_run:
+                        write_tree_cache(tree_cache_folder, commit_hash, tree_entries)
+            except httpx2.ProxyError:
+                # Actually raise on proxy error
+                raise
+            except (httpx2.ConnectError, httpx2.TimeoutException, OfflineModeIsEnabled) as error:
+                # Internet connection is down
+                # => will try to use local files only
+                api_call_error = error
+                pass
+            except RevisionNotFoundError:
+                # The repo was found but the revision doesn't exist on the Hub (never existed or got deleted)
+                raise
+            except HfHubHTTPError as error:
+                # Multiple reasons for an http error:
+                # - Repository is private and invalid/missing token sent
+                # - Repository is gated and invalid/missing token sent
+                # - Hub is down (error 500 or 504)
+                # => let's switch to 'local_files_only=True' to check if the files are already cached.
+                #    (if it's not the case, the error will be re-raised)
+                api_call_error = error
+                pass
+    
+        # At this stage, if the tree listing is unknown it means either:
+        # - internet connection is down
+        # - internet connection is deactivated (local_files_only=True or HF_HUB_OFFLINE=True)
+        # - repo is private/gated and invalid/missing token sent
+        # - Hub is down
+        # => let's look if we can find the appropriate folder in the cache:
+        #    - if the specified revision is a commit hash, look inside "snapshots".
+        #    - f the specified revision is a branch or tag, look inside "refs".
+        # => if local_dir is not None, we will return the path to the local folder if it exists.
+        if tree_entries is None or local_files_only:
+            if dry_run:
+                raise DryRunError(
+                    "Dry run cannot be performed as the repository cannot be accessed. Please check your internet connection or authentication token."
+                ) from api_call_error
+    
+            # Try to get which commit hash corresponds to the specified revision
+            if commit_hash is None:
+                ref_path = os.path.join(storage_folder, "refs", revision)
+                if os.path.exists(ref_path):
+                    # retrieve commit_hash from refs file
+                    with open(ref_path) as f:
+                        commit_hash = f.read()
+    
+            # Try to locate snapshot folder for this commit hash
+            if commit_hash is not None and local_dir is None:
+                snapshot_folder = os.path.join(storage_folder, "snapshots", commit_hash)
+                if os.path.exists(snapshot_folder):
+                    # The folder exists, but may be partial (e.g. after an interrupted download): only return it
+                    # if the cached tree listing confirms it is complete.
+                    _raise_if_incomplete_snapshot(
+                        tree_cache_folder=tree_cache_folder,
+                        commit_hash=commit_hash,
+                        base_dir=snapshot_folder,
+                        allow_patterns=allow_patterns,
+                        ignore_patterns=ignore_patterns,
+                        repo_id=repo_id,
+                        revision=revision,
+                        api_call_error=api_call_error,
+                    )
+                    return snapshot_folder
+    
+            # If local_dir is not None, return it if it exists and is complete
+            if local_dir is not None:
+                local_dir = Path(local_dir)
+                if local_dir.is_dir() and any(local_dir.iterdir()):
+                    if commit_hash is not None:
+                        _raise_if_incomplete_snapshot(
+                            tree_cache_folder=tree_cache_folder,
+                            commit_hash=commit_hash,
+                            base_dir=str(local_dir),
+                            allow_patterns=allow_patterns,
+                            ignore_patterns=ignore_patterns,
+                            repo_id=repo_id,
+                            revision=revision,
+                            api_call_error=api_call_error,
+                        )
+                    logger.warning(
+                        f"Returning existing local_dir `{local_dir}` as remote repo cannot be accessed in `snapshot_download` ({api_call_error})."
+                    )
+                    return str(local_dir.resolve())
+            # If we couldn't find the appropriate folder on disk, raise an error.
+            if local_files_only:
+>               raise LocalEntryNotFoundError(
+                    "Cannot find an appropriate cached snapshot folder for the specified revision on the local disk and "
+                    "outgoing traffic has been disabled. To enable repo look-ups and downloads online, pass "
+                    "'local_files_only=False' as input."
+E                   huggingface_hub.errors.LocalEntryNotFoundError: Cannot find an appropriate cached snapshot folder for the specified revision on the local disk and outgoing traffic has been disabled. To enable repo look-ups and downloads online, pass 'local_files_only=False' as input.
+
+.venv/lib/python3.12/site-packages/huggingface_hub/_snapshot_download.py:382: LocalEntryNotFoundError
+=========================== short test summary info ============================
+FAILED tests/plugins_tests/test_scheduler_plugins.py::test_adaptive_budget_generation[False]
+FAILED tests/plugins_tests/test_scheduler_plugins.py::test_adaptive_budget_generation[True]
+================= 2 failed, 14 passed, 1 deselected in 11.93s ==================

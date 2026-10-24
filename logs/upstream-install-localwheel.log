@@ -1,0 +1,7 @@
+Resolved 199 packages in 10.35s
+   Building vllm @ file:///root/autodl-tmp/vllm-budget-upstream
+      Built vllm @ file:///root/autodl-tmp/vllm-budget-upstream
+Prepared 5 packages in 6.44s
+error: Failed to install: triton-3.8.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (triton==3.8.0)
+  cause: Failed to clone `/root/autodl-tmp/vllm-budget-lab/.cache/uv/archive-v0/9SRG__GdXukoqvXQ/triton/backends/amd/lib/ocml.bc` to `/root/autodl-tmp/vllm-budget-upstream/.venv/lib/python3.12/site-packages/triton/backends/amd/lib/ocml.bc`
+  cause: No space left on device (os error 28)

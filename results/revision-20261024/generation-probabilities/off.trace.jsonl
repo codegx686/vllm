@@ -1,0 +1,1 @@
+{"type": "config", "pid": 20669, "capacity": 512, "config": {"mode": "off", "high_budget": 512, "low_budget": 128, "static_budget": 8192, "enter_prefills": 1, "exit_prefills": 0, "min_dwell_steps": 4, "guard_enabled": true, "max_stall_ms": 250.0, "guard_budget": 256, "guard_interval_steps": 8}}

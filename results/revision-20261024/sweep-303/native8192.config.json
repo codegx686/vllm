@@ -1,0 +1,13 @@
+{
+  "mode": "off",
+  "high_budget": 8192,
+  "low_budget": 1024,
+  "static_budget": 8192,
+  "enter_prefills": 2,
+  "exit_prefills": 0,
+  "min_dwell_steps": 4,
+  "guard_enabled": true,
+  "max_stall_ms": 250.0,
+  "guard_budget": 4096,
+  "guard_interval_steps": 8
+}
