@@ -1,5 +1,7 @@
 # vLLM 自适应 token 预算调度扩展
 
+已于 2026-10-24 发布 [vLLM Draft PR #63458](https://github.com/vllm-project/vllm/pull/63458)。提交署名、线上检查状态和后续操作见 [发布记录](PUBLICATION.zh-CN.md)。
+
 在 vLLM 0.22.1 的同步 V1 Scheduler 上实现可配置的运行时 token 预算控制，用于研究长 Prefill 与 Decode 混合负载的延迟取舍。代码、测试和 RTX 5090 实测记录一并保存。
 
 性能、消融与已知退化见 [RTX 5090 实验报告](REPORT.md)，逐请求与逐调度步证据保存在 `results/`。

@@ -1,5 +1,9 @@
 # 如何向 vLLM 提交
 
+本次已完成提交：[vLLM Draft PR #63458](https://github.com/vllm-project/vllm/pull/63458)。
+你不需要再创建一个 PR。发布结果、CI 门槛和继续更新同一 PR 的方法见 [发布记录](PUBLICATION.zh-CN.md)。
+以下保留从补丁复现提交流程的说明。
+
 这份交付包含可复现的实验项目和一个针对 vLLM 的独立补丁。真正提交给
 `vllm-project/vllm` 的是 `upstream.patch`，不是整个实验目录、历史报告、模型或日志。
 建议标题：`[Feature][Scheduler] Add adaptive token budget scheduler example`。
@@ -26,7 +30,7 @@ gh pr list --repo vllm-project/vllm --state open --search 'adaptive scheduler'
 ```
 
 建议先在该 RFC 中说明本示例的范围、证据和区别，询问维护者是否接受示例贡献。
-`RFC_COMMENT.md` 是可自行审阅发送的草稿。当前没有替你发布评论或创建 PR。
+`RFC_COMMENT.md` 是可自行审阅发送的草稿；没有额外发布 RFC 评论。Draft PR 已创建。
 如果出现等价的开放 PR，优先协作，不重复投稿。
 
 ## 2. Fork 并应用补丁
@@ -101,16 +105,18 @@ VLLM_MODEL_REDIRECT_PATH=/tmp/adaptive-model-redirect.json \
 vLLM 要求提交人理解所有改动，并亲自审查和运行相关测试。
 这是上游 [AGENTS.md](https://github.com/vllm-project/vllm/blob/main/AGENTS.md)
 与 [贡献指南](https://docs.vllm.ai/en/latest/contributing/) 的要求。
-本交付不代替你的审核，也不替你签署 DCO。
+本次已获得你的本人审核、测试及 DCO 明确确认，并按授权添加 Signed-off-by。
+下面展示已确认的作者和共同作者署名；新提交也应在本人审核后签署。
 
 ```bash
-git config user.name "你的真实姓名"
-git config user.email "你的 GitHub 邮箱"
+git config user.name "codegx686"
+git config user.email "147488460+codegx686@users.noreply.github.com"
 git add examples/features/adaptive_budget/scheduler.py \
   tests/plugins_tests/test_scheduler_plugins.py tests/v1/core/utils.py \
   docs/features/adaptive_budget.md docs/features/README.md \
   .buildkite/test_areas/plugins.yaml
 git commit -s -m "[Feature][Scheduler] Add adaptive token budget scheduler example" \
+  -m "Co-authored-by: Pig with dreams <114994886+PigHaveDreamS@users.noreply.github.com>" \
   -m "Co-authored-by: OpenAI Codex"
 git fetch upstream main
 git rebase upstream/main

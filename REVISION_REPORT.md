@@ -22,6 +22,9 @@
 已授权使用现有 Fork `codegx686/vllm`；作者及共同作者姓名、GitHub 隐私邮箱
 已确认。2026-10-24 提交人已确认逐行审查、理解改动、亲自运行相关测试，
 同意 DCO，并授权以已确认署名签署、公开代码和证据分支、创建 Draft PR。
+发布已完成：[Draft PR #63458](https://github.com/vllm-project/vllm/pull/63458)，
+代码提交 `ca2728850d3add8d6c7066b4a6fa4ae62e7a3247`。DCO 检查通过。
+线上 pre-commit 和文档构建受到新贡献者 CI 门槛限制，详情见 `PUBLICATION.zh-CN.md`。
 
 ## 修复与贡献范围
 
@@ -60,7 +63,7 @@
 | 提交基线新增测试 | 同样 16 passed，60.62 秒；`logs/upstream-tests-submission.log` |
 | 上游适用检查 | 14 个实际适用 hook 通过，见 `logs/upstream-changed-hooks.log` 与 `logs/upstream-ci-hooks.log` |
 | 完整 pre-commit 包装命令 | 本次补跑通过；初次 actionlint 的 Go 环境下载 SSL EOF 已解决，保留历史失败日志 |
-| 文档 | 独立 agent 从功能索引查找并审核配置/边界；本地可发现。未发布分支，网站搜索/预览尚未验证 |
+| 文档 | 独立 agent 从功能索引查找并审核配置/边界；本地可发现。发布后的文档构建因 pre-run-check 未通过而跳过，预览尚未验证 |
 
 一次最终测试调用遗漏 `AB_TEST_MODEL`，产生 16 个 KeyError，保留在
 `logs/tests-missing-model-env.log`；设置真实本地模型路径后 54 项全部通过。
@@ -182,6 +185,7 @@ prefill token 总量；本扩展限制所有调度 token。旧 `ppas` 组只是�
 [defer #61080](https://github.com/vllm-project/vllm/pull/61080)。
 查重结果保存在 `duplicate-search.json`，状态可能随时间变化。
 
-提交前由本人逐行审查、运行相关测试、更新 main、复查重复 PR，并签署 DCO。
-维护者是否愿意接纳该示例仍需确认。完整步骤见 `SUBMIT.zh-CN.md`；
-AI 辅助说明和 PR 模板草稿在 `PR_BODY.md`。本次未发布评论、推送分支或创建 PR。
+本人审核、测试确认及 DCO 授权已完成；已公开推送代码和独立证据分支，并创建 Draft PR。
+维护者是否愿意接纳该示例仍需确认。后续步骤见 `PUBLICATION.zh-CN.md`；
+复现提交步骤见 `SUBMIT.zh-CN.md`，已使用的 AI 辅助说明和 PR 正文保存在 `PR_BODY.md`。
+没有另外发送 RFC 评论或请求审查。
