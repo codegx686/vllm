@@ -1,6 +1,6 @@
 # vLLM PR checklist 审核记录
 
-状态：已准备可审查的示例贡献；提交前仍需本人审核、签署和运行检查。
+状态：代码与检查已完成；提交人已于 2026-10-24 确认本人审核、测试并同意 DCO，授权发布 Draft PR。
 本次使用基线提交中的 `.agents/skills/pr-checklist/SKILL.md`，逐项结果如下。
 
 ## 1. Design Fit
